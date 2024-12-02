@@ -1,0 +1,3 @@
+#!/bin/bash
+cat ~/Projects/crss/sourcedata/2022/accident.csv ~/Projects/crss/sourcedata/2021/accident.csv ~/Projects/crss/sourcedata/2020/ACCIDENT.csv ~/Projects/crss/sourcedata/2019/accident.csv ~/Projects/crss/sourcedata/2018/accident.csv ~/Projects/crss/sourcedata/2017/ACCIDENT.csv ~/Projects/crss/sourcedata/2016/accident.csv > ~/Projects/crss/sourcedata/all_years/accident_allyears.csv
+#"C:\Users\cojac\Projects\crss\sourcedata\2017\ACCIDENT.CSV"
