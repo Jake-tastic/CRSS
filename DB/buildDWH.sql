@@ -1,4 +1,5 @@
 CREATE TABLE light_cond(light_id INT PRIMARY KEY, lgt_cond VARCHAR(25));
+
 INSERT INTO light_cond 
 VALUES
 (1, "Daylight"),
@@ -12,6 +13,7 @@ VALUES
 (9, "Reported As Unknown");
 
 CREATE TABLE weather(weather_id INT PRIMARY KEY, weather_cond VARCHAR(25));
+
 INSERT INTO weather 
 VALUES 
 (1, "Clear"),
