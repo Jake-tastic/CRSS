@@ -40,7 +40,7 @@ class colmap:
 accident = colmap({
     "case_num" : ["casenum"],
     "region" : ["reg"],
-    "locale" : ["urbancity"],
+    "urbancity" : ["urbanicity"],
     "injuries" : ["no_inj_im"],
     "max_injury" : ["maxsev_im"],
     "pedestrian" : ["peds"],
@@ -51,11 +51,11 @@ accident = colmap({
     "occupants" : ["permvit"],
     "collision" :["man_coll", "manner of collision"],
     "related_junct" : ["reljct2_im"],
-    "intersect" : ["typ_int"],
+    "intersection" : ["typ_int"],
     "roadway" : ["rel_road"],
     "highway" : ["int_hwy"],
     "workzone" : ["wrk_zone"],
-    "light" : ["lgtcon_im"],
+    "lighting" : ["lgtcon_im"],
     "weather" : ["weather1", "weather.1"]
 })
 
