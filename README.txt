@@ -25,11 +25,6 @@ available reports) and sent to a central location to be coded into a common form
 to be stratified. Provided below is a link to the 63 page document explaining the strata process.
 https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/812706
 
-Steps:
-    1.Extract only the required CSV files from the NHTSA website, "https://www.nhtsa.gov/file-downloads?p=nhtsa/downloads/CRSS/". 
-        As of December 2024 the availble yearly reports range 2016 to 2022.
-
-
 Overview of the ETL Pipeline:
 
 1. Extraction Phase (crssextract.py)
