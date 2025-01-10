@@ -1,6 +1,7 @@
 CREATE DATABASE CRSS;
 USE CRSS;
 
+-- dimension tables for fact_accident table
 CREATE TABLE dim_light_cond(
     light_id INT PRIMARY KEY, 
     lgt_cond VARCHAR(25)
@@ -201,8 +202,8 @@ VALUES
 (1, "Front-to-Rear"),
 (2, "Front-to-Front"),
 (6, "Angle"),
-(7, "Sideswipe – Same Direction"),
-(8, "Sideswipe – Opposite Direction"),
+(7, "Sideswipe-Same Direction"),
+(8, "Sideswipe-Opposite Direction"),
 (9, "Rear-to-Side"),
 (10, "Rear-to-Rear"),
 (11, "Other"),
@@ -309,4 +310,42 @@ VALUES
 (6, "Friday", "Weekday"),
 (7, "Saturday", "Weekend"),
 (9, "Unknown", "Unknown")
+;
+
+
+CREATE TABLE dim_dates(
+	date_id INT PRIMARY KEY -- year + month
+    ,month_num INT -- 1-12
+    ,month_name VARCHAR(9) -- January-December
+    ,date_year INT -- year value of date
+    ,quarter_num INT -- 1-4
+    ,quarter_name CHAR(2) -- Q1, Q2, Q3, Q4
+
+    )
+;
+
+-- fill dim_dates table
+DROP PROCEDURE IF EXISTS fill_dim_dates;
+DELIMITER //
+CREATE PROCEDURE fill_dim_dates(IN startdate DATE, IN stopdate DATE)
+BEGIN
+	DECLARE dates DATE;
+    SET dates = startdate;
+	WHILE dates <= stopdate 
+		DO
+		INSERT INTO dim_dates
+		VALUES(date_format(dates, "%Y%m") -- date_id
+			,dates -- record_date
+			,MONTH(dates) -- month_number
+			,MONTHNAME(dates) -- month_name
+			,YEAR(dates) -- date_year
+			,QUARTER(dates) -- quarter_number
+			,CASE QUARTER(dates) WHEN 1 THEN 'Q1' WHEN 2 THEN 'Q2' WHEN 3 THEN 'Q3' ELSE 'Q4' END -- quarter_name
+			);
+		SET dates = ADDDATE(dates, INTERVAL 1 MONTH);
+	END WHILE;
+END
+//
+DELIMITER ;
+CALL fill_dim_dates('2016-01-01', '2022-12-31')
 ;
