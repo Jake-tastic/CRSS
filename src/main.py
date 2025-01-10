@@ -1,10 +1,10 @@
 import crssextract as ext
 import crsstransform as trf
 import crssload as ld
-import crss_err_log as el
+import crss_logging as el
 import pandas, os, shutil, sys, mysql.connector
 
-# file names, available years, and path
+# file names, available years
 crss_files = ["ACCIDENT.CSV", 
               "VEHICLE.CSV", 
               "PARKWORK.CSV", 
@@ -16,10 +16,12 @@ available_years = [2016,
                    2020, 
                    2021, 
                    2022]
+
+# define directories to be used
 directory = "~/Projects/crss/data/"
-source_directory = os.path.expanduser(f"{directory}sourcedata/")
-ready_directory = os.path.expanduser(f"{directory}readydata/")
-archive_directory = os.path.expanduser(f"{directory}archivedata/")
+source_directory = os.path.expanduser(f"{directory}sourcedata/") # for the raw files
+ready_directory = os.path.expanduser(f"{directory}readydata/") # for cleaned files 
+archive_directory = os.path.expanduser(f"{directory}archivedata/") # archived files for future use
 
 #CRSS configuration
 crss = {# start_file-files from NHTSA (using 4 out of 20 available files)
@@ -67,11 +69,11 @@ def clear_directory(directory_path):
             elif os.path.isdir(item_path):
                 shutil.rmtree(item_path)  # Remove directories recursively
         print(f"Contents of directory cleared: {directory_path}")
-    except Exception as e:
-        el.error_log(3, f"Failed to clear contents of directory: {directory_path}", e)
+    except:
+        el.logging(3, f"Failed to clear contents of directory: {directory_path}", Exception)
         sys.exit(1)
 
-def crss_etl (record_years, files, directory):
+def crss_etl (record_years, files, src, rdy, arch):
     """
     Perform the ETL process for CRSS data:
     - Extract files from the NHTSA website.
@@ -85,8 +87,8 @@ def crss_etl (record_years, files, directory):
         db_pass = input("Enter database password")
         db_con = mysql.connector.connect(user="root", password=db_pass, database="crss", port=3306)
         db_curs = db_con.cursor()
-    except mysql.connector.Error as e:
-        el.error_log(3, "Connecting to database:", e)
+    except:
+        el.logging(3, "Connecting to database:", mysql.connector.Error)
         print("DB CONNECTION FAILED!\nCheck ERROR_LOG.txt")
         sys.exit(1)
         
@@ -95,8 +97,8 @@ def crss_etl (record_years, files, directory):
         print("Retrieving column names from database...")
         for value in crss.values():
             value["columns"] = ld.get_columns(value["db_table"], db_curs)
-    except Exception as e:
-        el.error_log(3, f"Retrieving column names from database:", e)
+    except:
+        el.logging(3, f"Retrieving column names from database:", Exception)
         print("COLUMN NAMES FAILED!\nCheck ERROR_LOG.txt")
         db_curs.close()
         db_con.close()
@@ -108,10 +110,10 @@ def crss_etl (record_years, files, directory):
             # Step 1: extraction
             print(f"Beginning Extraction...")
             try:
-                ext.extraction(record_year=r, files=files, directory=directory)
+                ext.extraction(record_year=r, files=files, directory=src)
                 print(".........Complete")
-            except Exception as e:
-                el.error_log(3, f"Extraction phase for year {r}", e)
+            except:
+                el.logging(3, f"Extraction phase for year {r}", Exception)
                 print("EXTRACTION FAILED!\nCheck ERROR_LOG.txt")
                 sys.exit(1)
             # Step 2: transformation
@@ -121,12 +123,14 @@ def crss_etl (record_years, files, directory):
                     crss["accident"]["columns"],
                     crss["vehicle"]["columns"],
                     crss["person"]["columns"],
-                    record_year = r
+                    record_year = r,
+                    src_dir = src,
+                    rdy_dir=rdy
                 )
                 print("......Transformations Complete")
 
-            except Exception as e:
-                el.error_log(3, f"Transformation phase, year {r}:", e)
+            except:
+                el.logging(3, f"Transformation phase, year {r}: ", Exception)
                 print("TRANSFORMATION FAILED!\nCheck ERROR_LOG.txt")
                 sys.exit(1)
 
@@ -146,13 +150,13 @@ def crss_etl (record_years, files, directory):
                     missing_cols = set(df_cols) - set(crss_df.columns)
                     if missing_cols:
                         print(f"......Adding missing columns {missing_cols}\nto {key}")
-                        el.error_log(2, f"Adding missing columns to {key}", {missing_cols})
+                        el.logging(2, f"Adding missing columns to {key}", {missing_cols})
                     crss_df = crss_df.reindex(columns=df_cols, fill_value=pandas.NA)
 
                     # generate parameterized SQL statement
                     load_ready = ld.db_insert(crss[key]["db_table"], df_cols)
                     if load_ready is None:
-                        el.error_log(3, f"SQL statement for {crss[key]['db_table']} could not be generated.")
+                        el.logging(3, f"SQL statement for {crss[key]['db_table']} could not be generated.")
                         print("SQL FAILED!\nCheck ERROR_LOG.txt")
                         sys.exit(1)
 
@@ -161,26 +165,31 @@ def crss_etl (record_years, files, directory):
                         db_curs.executemany(load_ready, crss_df.values.tolist()) 
                         db_con.commit()
                         print(".........Load Complete!")
-                    except mysql.connector.Error as my_e:
-                        el.error_log(3, f"Loading {crss[key]['db_table']} failed!", my_e)
+                    except:
+                        el.logging(3, f"Loading {crss[key]['db_table']} failed!", mysql.connector.Error)
                         sys.exit(1)
 
-            except Exception as e:
-                el.error_log(3, f"Loading Phase for year {r}, table {crss[key]['db_table']} failed to load", e)
+            except:
+                el.logging(3, f"Loading Phase for year {r}, table {crss[key]['db_table']} failed to load", Exception)
                 print("FAILED!\nCheck ERROR_LOG.txt")
                 sys.exit(1)
 
-            for item in os.listdir(ready_directory):
-                target_file = os.path.join(ready_directory, item)
-                archive_file = os.path.join(archive_directory, f"{r}{item}")
-                os.rename(src=target_file, dst=archive_file)
-                el.error_log(3, "Could not move files", Exception)
+            # move files from ready_directory to archives
+            for item in os.listdir(rdy):
+                target_file = os.path.join(rdy, item)
+                archive_file = os.path.join(arch, f"{r}{item}")
+                try:
+                    if os.path.exists(archive_file):
+                        os.remove(archive_file)
+                    shutil.move(target_file, archive_file)
+                except:
+                    el.logging(3, "Could not move files", Exception)
             # clean out source_directory for next batch of transformations
-            clear_directory(source_directory)
-            clear_directory(ready_directory)
+            clear_directory(src)
+            clear_directory(rdy)
 
         except:
-            el.error_log(3, "ETL process:", Exception)
+            el.logging(3, "ETL process:", Exception)
             print("ETL FAILED!\nCheck ERROR_LOG.txt")
             sys.exit(1)
 
@@ -191,6 +200,6 @@ def crss_etl (record_years, files, directory):
            
 if __name__ == "__main__":
     try:
-        crss_etl(record_years=available_years, files=crss_files, directory=source_directory)
+        crss_etl(record_years=available_years, files=crss_files, src=source_directory, rdy=ready_directory, arch=archive_directory)
     except:
-        print("Error")
+        print("ETL Error")

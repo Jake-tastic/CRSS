@@ -1,6 +1,6 @@
 import mysql.connector
 from mysql.connector import Error
-import crss_err_log as el
+import crss_logging as el
 
 def db_connection(details):
     """
@@ -11,7 +11,7 @@ def db_connection(details):
         return connection
     except Error as e:
         print("Database not connected!")
-        el.error_log(3, "Database connection", e)
+        el.logging(3, "Database connection", e)
         return None
 
 
@@ -49,7 +49,7 @@ def db_insert(table_name, columns):
     try:
         # ensure columns is a list
         if not isinstance(columns, list):
-            el.error_log(3, "db_insert()", "Columns must be a list of column names.")
+            el.logging(3, "db_insert()", "Columns must be a list of column names.")
             return None
     
         # convert list to a comma-separated string and generate placeholders for parameterization
@@ -61,5 +61,5 @@ def db_insert(table_name, columns):
         return insert_stmt
     
     except Exception as e:
-        el.error_log(3, f"Load phase error generating INSERT statement for table {table_name}.", f"{e}\n{Error}")
+        el.logging(3, f"Load phase error generating INSERT statement for table {table_name}.", f"{e}\n{Error}")
         return None

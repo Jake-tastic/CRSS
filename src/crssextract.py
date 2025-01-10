@@ -2,7 +2,7 @@ import requests
 from zipfile import ZipFile
 import os
 import sys
-import crss_err_log as el
+import crss_logging as el
 
 
 
@@ -13,7 +13,6 @@ def extraction(record_year, files, directory):
         files(list): out of 20 files per report year, only four are needed
         directory(str): location for files to be stored locally
     """
-    print(f"...Moving to {directory}")
     if os.path.exists(directory):
         os.chdir(path=directory)
     else:
@@ -34,9 +33,9 @@ def extraction(record_year, files, directory):
 
         # unzip only required files into source directory
         with ZipFile("temp.zip", "r") as zip_ref:
-            # normalize all zip contents to uppercase for matching
+            # normalize all zip contents to lowercase for matching
             zip_contents = [item.lower() for item in zip_ref.namelist()]
-            el.error_log(1, f"Zipfile contents for {record_year}", zip_contents)
+            el.logging(1, f"Zipfile contents for {record_year}", zip_contents)
             for f in files:
                 f_lower = f.lower()
                 file_found = False
@@ -50,7 +49,7 @@ def extraction(record_year, files, directory):
                         break
             if not file_found:
                 print(f"......Error: {f} not found in ZIP archive")
-                el.error_log(3, f"Extracting {f} for {record_year}", Exception)
+                el.logging(3, f"Extracting {f} for {record_year}", Exception)
                 sys.exit(1)
         os.remove("temp.zip")
     else:

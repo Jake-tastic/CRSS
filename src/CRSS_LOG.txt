@@ -1,0 +1,39 @@
+----------------
+2025-01-09_16:34:09  --->
+Error level: --Message-- 
+Message: Zipfile contents for 2016
+['accident.csv', 'cevent.csv', 'damage.csv', 'distract.csv', 'drimpair.csv', 'factor.csv', 'maneuver.csv', 'nmcrash.csv', 'nmimpair.csv', 'nmprior.csv', 'parkwork.csv', 'pbtype.csv', 'person.csv', 'safetyeq.csv', 'vehicle.csv', 'vevent.csv', 'violatn.csv', 'vision.csv', 'vpicdecode.csv', 'vpictrailerdecode.csv', 'vsoe.csv']
+NoneType: None
+----------------
+2025-01-09_16:34:11  --->
+Error level: --Message-- 
+Message: Raw cols accident.csv: 
+['CASENUM', 'PSU', 'PJ', 'STRATUM', 'VE_TOTAL', 'VE_FORMS', 'PVH_INVL', 'PEDS', 'PERMVIT', 'PERNOTMVIT', 'NUM_INJ', 'MONTH', 'YEAR', 'DAY_WEEK', 'HOUR', 'MINUTE', 'HARM_EV', 'ALCOHOL', 'MAX_SEV', 'MAN_COLL', 'RELJCT1', 'RELJCT2', 'TYP_INT', 'WRK_ZONE', 'REL_ROAD', 'LGT_COND', 'WEATHER1', 'WEATHER2', 'WEATHER', 'SCH_BUS', 'INT_HWY', 'CF1', 'CF2', 'CF3', 'WKDY_IM', 'HOUR_IM', 'MINUTE_IM', 'EVENT1_IM', 'MANCOL_IM', 'RELJCT1_IM', 'RELJCT2_IM', 'LGTCON_IM', 'WEATHR_IM', 'MAXSEV_IM', 'NO_INJ_IM', 'ALCHL_IM', 'URBANICITY', 'REGION', 'PSUSTRAT', 'PSU_VAR', 'WEIGHT']
+NoneType: None
+----------------
+2025-01-09_16:34:11  --->
+Error level: --Message-- 
+Message: Normalized cols accident.csv: 
+['casenum', 'psu', 'pj', 'stratum', 've_total', 've_forms', 'pvh_invl', 'peds', 'permvit', 'pernotmvit', 'num_inj', 'month', 'year', 'day_week', 'hour', 'minute', 'harm_ev', 'alcohol', 'max_sev', 'man_coll', 'reljct1', 'reljct2', 'typ_int', 'wrk_zone', 'rel_road', 'lgt_cond', 'weather1', 'weather2', 'weather', 'sch_bus', 'int_hwy', 'cf1', 'cf2', 'cf3', 'wkdy_im', 'hour_im', 'minute_im', 'event1_im', 'mancol_im', 'reljct1_im', 'reljct2_im', 'lgtcon_im', 'weathr_im', 'maxsev_im', 'no_inj_im', 'alchl_im', 'urbanicity', 'region', 'psustrat', 'psu_var', 'weight']
+NoneType: None
+----------------
+2025-01-09_16:34:11  --->
+Error level: --Message-- 
+Message: Renamed cols accident.csv: 
+['case_num', 'psu', 'pj', 'stratum', 'vehicles', 'moving', 'not_moving', 'pedestrian', 'occupants', 'notin_veh', 'num_inj', 'month', 'year', 'day_week', 'hour', 'minute', 'harm_ev', 'alcohol', 'max_sev', 'collision', 'reljct1', 'reljct2', 'intersection', 'workzone', 'roadway', 'lgt_cond', 'weather', 'weather2', 'weather', 'sch_bus', 'highway', 'cf1', 'cf2', 'cf3', 'wkdy_im', 'hour_im', 'minute_im', 'event1_im', 'mancol_im', 'reljct1_im', 'related_junct', 'lighting', 'weathr_im', 'max_injury', 'injuries', 'alchl_im', 'urbancity', 'region', 'psustrat', 'psu_var', 'weight']
+NoneType: None
+----------------
+2025-01-09_16:34:11  --->
+Error level: --Message-- 
+Message: Duplicate columns detected
+['weather']
+NoneType: None
+----------------
+2025-01-09_16:35:30  --->
+Error level: ***ALERT!*** 
+Message: ETL process:
+<class 'Exception'>
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\main.py", line 178, in crss_etl
+    os.rename(src=target_file, dst=archive_file)
+FileExistsError: [WinError 183] Cannot create a file when that file already exists: 'C:\\Users\\cojac/Projects/crss/data/readydata/ACCIDENT.CSV' -> 'C:\\Users\\cojac/Projects/crss/data/archivedata/2016ACCIDENT.CSV'
