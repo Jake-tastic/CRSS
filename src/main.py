@@ -9,9 +9,9 @@ crss_files = ["ACCIDENT.CSV",
               "VEHICLE.CSV", 
               "PARKWORK.CSV", 
               "PERSON.CSV"]
-available_years = [2016, 
-                   2017, 
-                   2018, 
+available_years = [#2016, 
+                   #2017, 
+                   #2018, 
                    2019, 
                    2020, 
                    2021, 
@@ -38,9 +38,9 @@ crss = {# start_file-files from NHTSA (using 4 out of 20 available files)
     "vehicle" : {
         "start_file" : ["VEHICLE.CSV", "PARKWORK.CSV"],
         "db_table" : "fact_vehicle",
-        "end_file" : f"{source_directory}VEHICLES.CSV",
+        "end_file" : f"{source_directory}VEHICLE.CSV",
         "columns" : {},
-        "ready_dir" : f"{ready_directory}VEHICLES.CSV"
+        "ready_dir" : f"{ready_directory}VEHICLE.CSV"
         },
     "person" : {
         "start_file" : "PERSON.CSV",
@@ -68,7 +68,7 @@ def clear_directory(directory_path):
                 os.unlink(item_path)  # Remove files or symbolic links
             elif os.path.isdir(item_path):
                 shutil.rmtree(item_path)  # Remove directories recursively
-        print(f"Contents of directory cleared: {directory_path}")
+        el.logging(1, "Contents of directory cleared", {directory_path})
     except:
         el.logging(3, f"Failed to clear contents of directory: {directory_path}", Exception)
         sys.exit(1)
@@ -81,6 +81,10 @@ def crss_etl (record_years, files, src, rdy, arch):
     - Load files into the database.
     """
     print("Initiating CRSS ETL...")
+
+    # ensure directories are cleaned out and ready
+    clear_directory(src)
+    clear_directory(rdy)
 
     # Database connection 
     try:
@@ -139,39 +143,61 @@ def crss_etl (record_years, files, src, rdy, arch):
                 print("...Beginning Load Phase...")
                 for key in crss.keys():
                     # load files into a dataframe
-                    print(f"......{crss[key]['db_table']}...")
-                    crss_df = pandas.read_csv(crss[key]["ready_dir"])
+                    print(f"......{crss[key]['db_table']}")
+                    crss_df = pandas.read_csv(crss[key]["ready_dir"], low_memory=False)
 
-                    # get columns names from the dataframe and check for missing columns in files
-                    # some columns have been added to the reports since it's inception
+                    # align columns with database schema
                     df_cols = crss[key]["columns"]
-
-                    # align columns and handle mismatches
-                    missing_cols = set(df_cols) - set(crss_df.columns)
-                    if missing_cols:
-                        print(f"......Adding missing columns {missing_cols}\nto {key}")
-                        el.logging(2, f"Adding missing columns to {key}", {missing_cols})
                     crss_df = crss_df.reindex(columns=df_cols, fill_value=pandas.NA)
+
+                    # ensure column datatypes match database schema
+                    for col in crss_df.columns:
+                        crss_df[col] = pandas.to_numeric(crss_df[col], errors='coerce', downcast='integer').fillna(0).astype(int)
 
                     # generate parameterized SQL statement
                     load_ready = ld.db_insert(crss[key]["db_table"], df_cols)
                     if load_ready is None:
                         el.logging(3, f"SQL statement for {crss[key]['db_table']} could not be generated.")
                         print("SQL FAILED!\nCheck ERROR_LOG.txt")
+                        db_curs.close()
+                        db_con.close()
                         sys.exit(1)
 
-                    # execute the query and commitchanges
-                    try:
-                        db_curs.executemany(load_ready, crss_df.values.tolist()) 
-                        db_con.commit()
+                    # execute batch inserts
+                    data = crss_df.values.tolist()
+                    batch_size = 500
+                    for i in range(0, len(data), batch_size):
+                        batch = data[i:i + batch_size]
+                        try:
+                            db_curs.executemany(load_ready, batch) 
+                            db_con.commit()
+                            
+                        except:
+                            el.logging(3, f"Loading {crss[key]['db_table']} failed!", mysql.connector.Error)
+                            db_con.rollback()
+
+                            # retry logic
+                            retries = 3
+                            for attempt in range(retries):
+                                try:
+                                    el.logging(2, "Reattempting database insert", f"Attempt {attempt + 1} of {retries}")
+                                    db_con.reconnect(attempt=3, delay=5)
+                                    db_curs = db_con.cursor()
+                                    db_curs.executemany(load_ready, batch)
+                                    db_con.commit()
+                                    el.logging(1, "Successsful insertion", "")
+                                except:
+                                    el.logging(3, f"Retry attempt {attempt + 1}", f"Failed!")
+                                    db_con.rollback()
+                            else:
+                                el.logging(3, f"All retries failed for batch in {crss[key]['db_table']}", mysql.connector.Error)
+
                         print(".........Load Complete!")
-                    except:
-                        el.logging(3, f"Loading {crss[key]['db_table']} failed!", mysql.connector.Error)
-                        sys.exit(1)
-
             except:
                 el.logging(3, f"Loading Phase for year {r}, table {crss[key]['db_table']} failed to load", Exception)
                 print("FAILED!\nCheck ERROR_LOG.txt")
+                db_curs.close()
+                db_con.close()
                 sys.exit(1)
 
             # move files from ready_directory to archives
@@ -184,6 +210,7 @@ def crss_etl (record_years, files, src, rdy, arch):
                     shutil.move(target_file, archive_file)
                 except:
                     el.logging(3, "Could not move files", Exception)
+
             # clean out source_directory for next batch of transformations
             clear_directory(src)
             clear_directory(rdy)
@@ -191,12 +218,15 @@ def crss_etl (record_years, files, src, rdy, arch):
         except:
             el.logging(3, "ETL process:", Exception)
             print("ETL FAILED!\nCheck ERROR_LOG.txt")
+            db_curs.close()
+            db_con.close()
             sys.exit(1)
 
         print(f"......{r} Complete")
     db_curs.close()
     db_con.close()
-    print("Database connection closed.")
+
+print("ETL COMPLETE!!!")
            
 if __name__ == "__main__":
     try:

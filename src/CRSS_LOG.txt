@@ -1,39 +1,909 @@
 ----------------
-2025-01-09_16:34:09  --->
+2025-01-23_21:48:58
 Error level: --Message-- 
-Message: Zipfile contents for 2016
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/sourcedata/'}
+NoneType: None
+----------------
+2025-01-23_21:48:58
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/readydata/'}
+NoneType: None
+----------------
+2025-01-23_21:49:11
+Error level: --Message-- 
+Message: Zipfile contents for 2018
+Error:
 ['accident.csv', 'cevent.csv', 'damage.csv', 'distract.csv', 'drimpair.csv', 'factor.csv', 'maneuver.csv', 'nmcrash.csv', 'nmimpair.csv', 'nmprior.csv', 'parkwork.csv', 'pbtype.csv', 'person.csv', 'safetyeq.csv', 'vehicle.csv', 'vevent.csv', 'violatn.csv', 'vision.csv', 'vpicdecode.csv', 'vpictrailerdecode.csv', 'vsoe.csv']
 NoneType: None
 ----------------
-2025-01-09_16:34:11  --->
+2025-01-23_21:49:11
 Error level: --Message-- 
-Message: Raw cols accident.csv: 
-['CASENUM', 'PSU', 'PJ', 'STRATUM', 'VE_TOTAL', 'VE_FORMS', 'PVH_INVL', 'PEDS', 'PERMVIT', 'PERNOTMVIT', 'NUM_INJ', 'MONTH', 'YEAR', 'DAY_WEEK', 'HOUR', 'MINUTE', 'HARM_EV', 'ALCOHOL', 'MAX_SEV', 'MAN_COLL', 'RELJCT1', 'RELJCT2', 'TYP_INT', 'WRK_ZONE', 'REL_ROAD', 'LGT_COND', 'WEATHER1', 'WEATHER2', 'WEATHER', 'SCH_BUS', 'INT_HWY', 'CF1', 'CF2', 'CF3', 'WKDY_IM', 'HOUR_IM', 'MINUTE_IM', 'EVENT1_IM', 'MANCOL_IM', 'RELJCT1_IM', 'RELJCT2_IM', 'LGTCON_IM', 'WEATHR_IM', 'MAXSEV_IM', 'NO_INJ_IM', 'ALCHL_IM', 'URBANICITY', 'REGION', 'PSUSTRAT', 'PSU_VAR', 'WEIGHT']
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/ACCIDENT.CSV:
+Error:
+ascii
 NoneType: None
 ----------------
-2025-01-09_16:34:11  --->
-Error level: --Message-- 
-Message: Normalized cols accident.csv: 
-['casenum', 'psu', 'pj', 'stratum', 've_total', 've_forms', 'pvh_invl', 'peds', 'permvit', 'pernotmvit', 'num_inj', 'month', 'year', 'day_week', 'hour', 'minute', 'harm_ev', 'alcohol', 'max_sev', 'man_coll', 'reljct1', 'reljct2', 'typ_int', 'wrk_zone', 'rel_road', 'lgt_cond', 'weather1', 'weather2', 'weather', 'sch_bus', 'int_hwy', 'cf1', 'cf2', 'cf3', 'wkdy_im', 'hour_im', 'minute_im', 'event1_im', 'mancol_im', 'reljct1_im', 'reljct2_im', 'lgtcon_im', 'weathr_im', 'maxsev_im', 'no_inj_im', 'alchl_im', 'urbanicity', 'region', 'psustrat', 'psu_var', 'weight']
-NoneType: None
-----------------
-2025-01-09_16:34:11  --->
-Error level: --Message-- 
-Message: Renamed cols accident.csv: 
-['case_num', 'psu', 'pj', 'stratum', 'vehicles', 'moving', 'not_moving', 'pedestrian', 'occupants', 'notin_veh', 'num_inj', 'month', 'year', 'day_week', 'hour', 'minute', 'harm_ev', 'alcohol', 'max_sev', 'collision', 'reljct1', 'reljct2', 'intersection', 'workzone', 'roadway', 'lgt_cond', 'weather', 'weather2', 'weather', 'sch_bus', 'highway', 'cf1', 'cf2', 'cf3', 'wkdy_im', 'hour_im', 'minute_im', 'event1_im', 'mancol_im', 'reljct1_im', 'related_junct', 'lighting', 'weathr_im', 'max_injury', 'injuries', 'alchl_im', 'urbancity', 'region', 'psustrat', 'psu_var', 'weight']
-NoneType: None
-----------------
-2025-01-09_16:34:11  --->
-Error level: --Message-- 
-Message: Duplicate columns detected
-['weather']
-NoneType: None
-----------------
-2025-01-09_16:35:30  --->
+2025-01-23_21:49:11
 Error level: ***ALERT!*** 
-Message: ETL process:
+Message: Failed to load file: C:\Users\cojac/Projects/crss/data/sourcedata/ACCIDENT.CSV
+Error:
 <class 'Exception'>
 Traceback (most recent call last):
-  File "c:\Users\cojac\Projects\crss\src\main.py", line 178, in crss_etl
-    os.rename(src=target_file, dst=archive_file)
-FileExistsError: [WinError 183] Cannot create a file when that file already exists: 'C:\\Users\\cojac/Projects/crss/data/readydata/ACCIDENT.CSV' -> 'C:\\Users\\cojac/Projects/crss/data/archivedata/2016ACCIDENT.CSV'
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 19, in load_file
+    for i, line in enumerate(file, start=1):
+ValueError: I/O operation on closed file.
+----------------
+2025-01-23_21:49:11
+Error level: ***ALERT!*** 
+Message: Transforming accident file 
+Error:
+<class 'Exception'>
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 19, in load_file
+    for i, line in enumerate(file, start=1):
+ValueError: I/O operation on closed file.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 71, in transform_acc
+    acc_df = load_file(target_file)
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 43, in load_file
+    sys.exit(1)
+SystemExit: 1
+----------------
+2025-01-23_21:49:11
+Error level: ***ALERT!*** 
+Message: Transformation phase, year 2018: 
+Error:
+<class 'Exception'>
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 19, in load_file
+    for i, line in enumerate(file, start=1):
+ValueError: I/O operation on closed file.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 71, in transform_acc
+    acc_df = load_file(target_file)
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 43, in load_file
+    sys.exit(1)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\main.py", line 126, in crss_etl
+    trf.crss_transform(
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 263, in crss_transform
+    transform_acc(a_col, record_year = record_year, src_dir=src_dir, rdy_dir=rdy_dir)
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 108, in transform_acc
+    sys.exit(1)
+SystemExit: 1
+----------------
+2025-01-23_21:49:11
+Error level: ***ALERT!*** 
+Message: ETL process:
+Error:
+<class 'Exception'>
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 19, in load_file
+    for i, line in enumerate(file, start=1):
+ValueError: I/O operation on closed file.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 71, in transform_acc
+    acc_df = load_file(target_file)
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 43, in load_file
+    sys.exit(1)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\main.py", line 126, in crss_etl
+    trf.crss_transform(
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 263, in crss_transform
+    transform_acc(a_col, record_year = record_year, src_dir=src_dir, rdy_dir=rdy_dir)
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 108, in transform_acc
+    sys.exit(1)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\main.py", line 139, in crss_etl
+    sys.exit(1)
+SystemExit: 1
+----------------
+2025-01-23_21:52:05
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/sourcedata/'}
+NoneType: None
+----------------
+2025-01-23_21:52:05
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/readydata/'}
+NoneType: None
+----------------
+2025-01-23_21:52:19
+Error level: --Message-- 
+Message: Zipfile contents for 2019
+Error:
+['accident.csv', 'cevents.csv', 'damage.csv', 'distract.csv', 'drimpair.csv', 'factor.csv', 'maneuver.csv', 'nmcrash.csv', 'nmdistract.csv', 'nmimpair.csv', 'nmprior.csv', 'parkwork.csv', 'pbtype.csv', 'person.csv', 'safetyeq.csv', 'vehicle.csv', 'vevent.csv', 'violatn.csv', 'vision.csv', 'vpicdecode.csv', 'vpictrailerdecode.csv', 'vsoe.csv']
+NoneType: None
+----------------
+2025-01-23_21:52:20
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/ACCIDENT.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_21:52:21
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/ACCIDENT.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_21:52:21
+Error level: --Message-- 
+Message: 2019 Accident
+Error:
+Row counts match as expected.
+Raw Count:54409
+Clean Count: 54409
+NoneType: None
+----------------
+2025-01-23_21:52:58
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/VEHICLE.CSV:
+Error:
+windows-1250
+NoneType: None
+----------------
+2025-01-23_21:53:03
+Error level: ***ALERT!*** 
+Message: Failed to load file: C:\Users\cojac/Projects/crss/data/sourcedata/VEHICLE.CSV
+Error:
+<class 'Exception'>
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 27, in load_file
+    raw_df = polars.read_csv(temp_path)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\_utils\deprecation.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\_utils\deprecation.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\_utils\deprecation.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\io\csv\functions.py", line 534, in read_csv
+    df = _read_csv_impl(
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\io\csv\functions.py", line 682, in _read_csv_impl
+    pydf = PyDataFrame.read_csv(
+polars.exceptions.ComputeError: could not parse `1NNVA2810YM3` as dtype `i64` at column 'TRLR2VIN' (column number 142)
+
+The current offset in the file is 2327096 bytes.
+
+You might want to try:
+- increasing `infer_schema_length` (e.g. `infer_schema_length=10000`),
+- specifying correct dtype with the `schema_overrides` argument
+- setting `ignore_errors` to `True`,
+- adding `1NNVA2810YM3` to the `null_values` list.
+
+Original error: ```remaining bytes non-empty```
+----------------
+2025-01-23_21:53:03
+Error level: ***ALERT!*** 
+Message: 2019 Vehicle transformation failed
+Error:
+<class 'Exception'>
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 27, in load_file
+    raw_df = polars.read_csv(temp_path)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\_utils\deprecation.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\_utils\deprecation.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\_utils\deprecation.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\io\csv\functions.py", line 534, in read_csv
+    df = _read_csv_impl(
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\io\csv\functions.py", line 682, in _read_csv_impl
+    pydf = PyDataFrame.read_csv(
+polars.exceptions.ComputeError: could not parse `1NNVA2810YM3` as dtype `i64` at column 'TRLR2VIN' (column number 142)
+
+The current offset in the file is 2327096 bytes.
+
+You might want to try:
+- increasing `infer_schema_length` (e.g. `infer_schema_length=10000`),
+- specifying correct dtype with the `schema_overrides` argument
+- setting `ignore_errors` to `True`,
+- adding `1NNVA2810YM3` to the `null_values` list.
+
+Original error: ```remaining bytes non-empty```
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 141, in transform_veh
+    veh_df = load_file(target_file)
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 43, in load_file
+    sys.exit(1)
+SystemExit: 1
+----------------
+2025-01-23_21:53:03
+Error level: ***ALERT!*** 
+Message: Tranforming Vehicle file
+Error:
+<class 'Exception'>
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 27, in load_file
+    raw_df = polars.read_csv(temp_path)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\_utils\deprecation.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\_utils\deprecation.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\_utils\deprecation.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\io\csv\functions.py", line 534, in read_csv
+    df = _read_csv_impl(
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\io\csv\functions.py", line 682, in _read_csv_impl
+    pydf = PyDataFrame.read_csv(
+polars.exceptions.ComputeError: could not parse `1NNVA2810YM3` as dtype `i64` at column 'TRLR2VIN' (column number 142)
+
+The current offset in the file is 2327096 bytes.
+
+You might want to try:
+- increasing `infer_schema_length` (e.g. `infer_schema_length=10000`),
+- specifying correct dtype with the `schema_overrides` argument
+- setting `ignore_errors` to `True`,
+- adding `1NNVA2810YM3` to the `null_values` list.
+
+Original error: ```remaining bytes non-empty```
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 141, in transform_veh
+    veh_df = load_file(target_file)
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 43, in load_file
+    sys.exit(1)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 194, in transform_veh
+    sys.exit(1)
+SystemExit: 1
+----------------
+2025-01-23_21:53:03
+Error level: ***ALERT!*** 
+Message: Transformation phase, year 2019: 
+Error:
+<class 'Exception'>
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 27, in load_file
+    raw_df = polars.read_csv(temp_path)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\_utils\deprecation.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\_utils\deprecation.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\_utils\deprecation.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\io\csv\functions.py", line 534, in read_csv
+    df = _read_csv_impl(
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\io\csv\functions.py", line 682, in _read_csv_impl
+    pydf = PyDataFrame.read_csv(
+polars.exceptions.ComputeError: could not parse `1NNVA2810YM3` as dtype `i64` at column 'TRLR2VIN' (column number 142)
+
+The current offset in the file is 2327096 bytes.
+
+You might want to try:
+- increasing `infer_schema_length` (e.g. `infer_schema_length=10000`),
+- specifying correct dtype with the `schema_overrides` argument
+- setting `ignore_errors` to `True`,
+- adding `1NNVA2810YM3` to the `null_values` list.
+
+Original error: ```remaining bytes non-empty```
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 141, in transform_veh
+    veh_df = load_file(target_file)
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 43, in load_file
+    sys.exit(1)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 194, in transform_veh
+    sys.exit(1)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\main.py", line 126, in crss_etl
+    trf.crss_transform(
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 264, in crss_transform
+    transform_veh(v_col, record_year = record_year, src_dir=src_dir, rdy_dir=rdy_dir)
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 200, in transform_veh
+    sys.exit(1)
+SystemExit: 1
+----------------
+2025-01-23_21:53:03
+Error level: ***ALERT!*** 
+Message: ETL process:
+Error:
+<class 'Exception'>
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 27, in load_file
+    raw_df = polars.read_csv(temp_path)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\_utils\deprecation.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\_utils\deprecation.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\_utils\deprecation.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\io\csv\functions.py", line 534, in read_csv
+    df = _read_csv_impl(
+  File "C:\Users\cojac\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\polars\io\csv\functions.py", line 682, in _read_csv_impl
+    pydf = PyDataFrame.read_csv(
+polars.exceptions.ComputeError: could not parse `1NNVA2810YM3` as dtype `i64` at column 'TRLR2VIN' (column number 142)
+
+The current offset in the file is 2327096 bytes.
+
+You might want to try:
+- increasing `infer_schema_length` (e.g. `infer_schema_length=10000`),
+- specifying correct dtype with the `schema_overrides` argument
+- setting `ignore_errors` to `True`,
+- adding `1NNVA2810YM3` to the `null_values` list.
+
+Original error: ```remaining bytes non-empty```
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 141, in transform_veh
+    veh_df = load_file(target_file)
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 43, in load_file
+    sys.exit(1)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 194, in transform_veh
+    sys.exit(1)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\main.py", line 126, in crss_etl
+    trf.crss_transform(
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 264, in crss_transform
+    transform_veh(v_col, record_year = record_year, src_dir=src_dir, rdy_dir=rdy_dir)
+  File "c:\Users\cojac\Projects\crss\src\crsstransform.py", line 200, in transform_veh
+    sys.exit(1)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\cojac\Projects\crss\src\main.py", line 139, in crss_etl
+    sys.exit(1)
+SystemExit: 1
+----------------
+2025-01-23_22:00:17
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/sourcedata/'}
+NoneType: None
+----------------
+2025-01-23_22:00:17
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/readydata/'}
+NoneType: None
+----------------
+2025-01-23_22:00:33
+Error level: --Message-- 
+Message: Zipfile contents for 2019
+Error:
+['accident.csv', 'cevents.csv', 'damage.csv', 'distract.csv', 'drimpair.csv', 'factor.csv', 'maneuver.csv', 'nmcrash.csv', 'nmdistract.csv', 'nmimpair.csv', 'nmprior.csv', 'parkwork.csv', 'pbtype.csv', 'person.csv', 'safetyeq.csv', 'vehicle.csv', 'vevent.csv', 'violatn.csv', 'vision.csv', 'vpicdecode.csv', 'vpictrailerdecode.csv', 'vsoe.csv']
+NoneType: None
+----------------
+2025-01-23_22:00:34
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/ACCIDENT.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:00:35
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/ACCIDENT.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:00:35
+Error level: --Message-- 
+Message: 2019 Accident
+Error:
+Row counts match as expected.
+Raw Count:54409
+Clean Count: 54409
+NoneType: None
+----------------
+2025-01-23_22:01:10
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/VEHICLE.CSV:
+Error:
+windows-1250
+NoneType: None
+----------------
+2025-01-23_22:01:14
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/VEHICLE.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:01:14
+Error level: --Message-- 
+Message: 2019 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:96717
+Clean Count: 96717
+NoneType: None
+----------------
+2025-01-23_22:01:16
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/PARKWORK.CSV:
+Error:
+windows-1250
+NoneType: None
+----------------
+2025-01-23_22:01:16
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/PARKWORK.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:01:16
+Error level: ***ALERT!*** 
+Message: Missing columns in 2019 PARKWORK: [['injured', 'speedrel', 'veh_speed', 'speedlimit', 'driver_pres', 'acc_type', 'precrash', 'crit_event', 'attempt', 'stability', 'direction']]
+Error:
+Columns in dataframe:
+['case_num', 'veh_no', 'stratum', 'stratumname', 'region', 'regionname', 'psu', 'pj', 'psu_var', 'urbanicity', 'urbanicityname', 'pve_forms', 'occupants', 'pnumoccsname', 'pmonth', 'pmonthname', 'phour', 'phourname', 'pminute', 'pminutename', 'pharm_ev', 'pharm_evname', 'pman_coll', 'pman_collname', 'moving', 'ptypename', 'hitrun', 'phit_runname', 'v_make', 'pmakename', 'v_model', 'make_model', 'pmak_modname', 'v_body', 'pbodytypname', 'v_year', 'pmodyearname', 'pvin', 'pvinname', 'trailer', 'ptrailername', 'pmcarr_i1', 'pmcarr_i1name', 'pmcarr_i2', 'pmcarr_i2name', 'pmcarr_id', 'pmcarr_idname', 'gvwr', 'pgvwrname', 'pv_config', 'pv_configname', 'cargo', 'pcargtypname', 'phaz_inv', 'phaz_invname', 'phazplac', 'phazplacname', 'phaz_id', 'phaz_idname', 'hazmat', 'phaz_cnoname', 'hzm_spill', 'phaz_relname', 'pbus_use', 'pbus_usename', 'special_v', 'psp_usename', 'pem_use', 'pem_usename', 'impact', 'pimpact1name', 'damage', 'pveh_sevname', 'towed', 'ptowedname', 'most_harm', 'pm_harmname', 'pveh_sc1', 'pveh_sc1name', 'pveh_sc2', 'pveh_sc2name', 'fire', 'pfirename', 'ptrlr1vin', 'ptrlr1vinname', 'ptrlr2vin', 'ptrlr2vinname', 'ptrlr3vin', 'ptrlr3vinname', 'psustrat', 'weight', 'veh_id']
+NoneType: None
+----------------
+2025-01-23_22:01:16
+Error level: --Message-- 
+Message: 2019 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:2799
+Clean Count: 2799
+NoneType: None
+----------------
+2025-01-23_22:01:39
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/PERSON.CSV:
+Error:
+windows-1250
+NoneType: None
+----------------
+2025-01-23_22:01:43
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/PERSON.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:01:43
+Error level: --Message-- 
+Message: C:\Users\cojac/Projects/crss/data/readydata/ Person
+Error:
+Row counts match as expected.
+Raw Count:135410
+Clean Count: 135410
+NoneType: None
+----------------
+2025-01-23_22:02:15
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/sourcedata/'}
+NoneType: None
+----------------
+2025-01-23_22:02:15
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/readydata/'}
+NoneType: None
+----------------
+2025-01-23_22:02:28
+Error level: --Message-- 
+Message: Zipfile contents for 2020
+Error:
+['crss2020csv/accident.csv', 'crss2020csv/cevent.csv', 'crss2020csv/crashrf.csv', 'crss2020csv/damage.csv', 'crss2020csv/distract.csv', 'crss2020csv/drimpair.csv', 'crss2020csv/driverrf.csv', 'crss2020csv/factor.csv', 'crss2020csv/maneuver.csv', 'crss2020csv/nmcrash.csv', 'crss2020csv/nmdistract.csv', 'crss2020csv/nmimpair.csv', 'crss2020csv/nmprior.csv', 'crss2020csv/parkwork.csv', 'crss2020csv/pbtype.csv', 'crss2020csv/person.csv', 'crss2020csv/personrf.csv', 'crss2020csv/pvehiclesf.csv', 'crss2020csv/safetyeq.csv', 'crss2020csv/vehicle.csv', 'crss2020csv/vehiclesf.csv', 'crss2020csv/vevent.csv', 'crss2020csv/violatn.csv', 'crss2020csv/vision.csv', 'crss2020csv/vpicdecode.csv', 'crss2020csv/vpictrailerdecode.csv', 'crss2020csv/vsoe.csv', 'crss2020csv/weather.csv']
+NoneType: None
+----------------
+2025-01-23_22:02:30
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2020CSV/ACCIDENT.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:02:31
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2020CSV/ACCIDENT.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:02:31
+Error level: --Message-- 
+Message: 2020 Accident
+Error:
+Row counts match as expected.
+Raw Count:54745
+Clean Count: 54745
+NoneType: None
+----------------
+2025-01-23_22:03:08
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2020CSV/VEHICLE.CSV:
+Error:
+windows-1250
+NoneType: None
+----------------
+2025-01-23_22:03:13
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2020CSV/VEHICLE.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:03:13
+Error level: --Message-- 
+Message: 2020 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:94718
+Clean Count: 94718
+NoneType: None
+----------------
+2025-01-23_22:03:16
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2020CSV/PARKWORK.CSV:
+Error:
+windows-1250
+NoneType: None
+----------------
+2025-01-23_22:03:16
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2020CSV/PARKWORK.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:03:16
+Error level: ***ALERT!*** 
+Message: Missing columns in 2020 PARKWORK: [['injured', 'speedrel', 'veh_speed', 'speedlimit', 'driver_pres', 'acc_type', 'precrash', 'crit_event', 'attempt', 'stability', 'direction']]
+Error:
+Columns in dataframe:
+['case_num', 'veh_no', 'stratum', 'stratumname', 'region', 'regionname', 'psu', 'pj', 'psu_var', 'urbanicity', 'urbanicityname', 'pve_forms', 'occupants', 'pnumoccsname', 'pmonth', 'pmonthname', 'phour', 'phourname', 'pminute', 'pminutename', 'pharm_ev', 'pharm_evname', 'pman_coll', 'pman_collname', 'moving', 'ptypename', 'hitrun', 'phit_runname', 'v_make', 'pmakename', 'v_model', 'make_model', 'pmak_modname', 'v_body', 'pbodytypname', 'v_year', 'pmodyearname', 'pvin', 'pvinname', 'trailer', 'ptrailername', 'pmcarr_i1', 'pmcarr_i1name', 'pmcarr_i2', 'pmcarr_i2name', 'pmcarr_id', 'pmcarr_idname', 'pv_config', 'pv_configname', 'cargo', 'pcargtypname', 'phaz_inv', 'phaz_invname', 'phazplac', 'phazplacname', 'phaz_id', 'phaz_idname', 'hazmat', 'phaz_cnoname', 'hzm_spill', 'phaz_relname', 'pbus_use', 'pbus_usename', 'special_v', 'psp_usename', 'pem_use', 'pem_usename', 'impact', 'pimpact1name', 'damage', 'pveh_sevname', 'towed', 'ptowedname', 'most_harm', 'pm_harmname', 'fire', 'pfirename', 'ptrlr1vin', 'ptrlr1vinname', 'ptrlr2vin', 'ptrlr2vinname', 'ptrlr3vin', 'ptrlr3vinname', 'pvpicmake', 'pvpicmakename', 'pvpicmodel', 'pvpicmodelname', 'pvpicbodyclass', 'pvpicbodyclassname', 'picfinalbody', 'picfinalbodyname', 'pgvwr_from', 'pgvwr_fromname', 'gvwr', 'pgvwr_toname', 'ptrlr1gvwr', 'ptrlr1gvwrname', 'ptrlr2gvwr', 'ptrlr2gvwrname', 'ptrlr3gvwr', 'ptrlr3gvwrname', 'psustrat', 'weight', 'veh_id']
+NoneType: None
+----------------
+2025-01-23_22:03:16
+Error level: --Message-- 
+Message: 2020 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:3261
+Clean Count: 3261
+NoneType: None
+----------------
+2025-01-23_22:03:41
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2020CSV/PERSON.CSV:
+Error:
+windows-1250
+NoneType: None
+----------------
+2025-01-23_22:03:45
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2020CSV/PERSON.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:03:45
+Error level: --Message-- 
+Message: C:\Users\cojac/Projects/crss/data/readydata/ Person
+Error:
+Row counts match as expected.
+Raw Count:131962
+Clean Count: 131962
+NoneType: None
+----------------
+2025-01-23_22:04:17
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/sourcedata/'}
+NoneType: None
+----------------
+2025-01-23_22:04:17
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/readydata/'}
+NoneType: None
+----------------
+2025-01-23_22:04:29
+Error level: --Message-- 
+Message: Zipfile contents for 2021
+Error:
+['crss2021csv/accident.csv', 'crss2021csv/cevent.csv', 'crss2021csv/crashrf.csv', 'crss2021csv/damage.csv', 'crss2021csv/distract.csv', 'crss2021csv/drimpair.csv', 'crss2021csv/driverrf.csv', 'crss2021csv/factor.csv', 'crss2021csv/maneuver.csv', 'crss2021csv/nmcrash.csv', 'crss2021csv/nmdistract.csv', 'crss2021csv/nmimpair.csv', 'crss2021csv/nmprior.csv', 'crss2021csv/parkwork.csv', 'crss2021csv/pbtype.csv', 'crss2021csv/person.csv', 'crss2021csv/personrf.csv', 'crss2021csv/pvehiclesf.csv', 'crss2021csv/safetyeq.csv', 'crss2021csv/vehicle.csv', 'crss2021csv/vehiclesf.csv', 'crss2021csv/vevent.csv', 'crss2021csv/violatn.csv', 'crss2021csv/vision.csv', 'crss2021csv/vpicdecode.csv', 'crss2021csv/vpictrailerdecode.csv', 'crss2021csv/vsoe.csv', 'crss2021csv/weather.csv']
+NoneType: None
+----------------
+2025-01-23_22:04:30
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2021CSV/ACCIDENT.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:04:31
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2021CSV/ACCIDENT.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:04:31
+Error level: --Message-- 
+Message: 2021 Accident
+Error:
+Row counts match as expected.
+Raw Count:54200
+Clean Count: 54200
+NoneType: None
+----------------
+2025-01-23_22:04:31
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2021CSV/VEHICLE.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:04:34
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2021CSV/VEHICLE.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:04:35
+Error level: --Message-- 
+Message: 2021 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:95785
+Clean Count: 95785
+NoneType: None
+----------------
+2025-01-23_22:04:35
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2021CSV/PARKWORK.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:04:35
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2021CSV/PARKWORK.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:04:35
+Error level: ***ALERT!*** 
+Message: Missing columns in 2021 PARKWORK: [['injured', 'speedrel', 'veh_speed', 'speedlimit', 'driver_pres', 'acc_type', 'precrash', 'crit_event', 'attempt', 'stability', 'direction']]
+Error:
+Columns in dataframe:
+['case_num', 'veh_no', 'psu', 'psu_var', 'psustrat', 'region', 'regionname', 'urbanicity', 'urbanicityname', 'stratum', 'stratumname', 'pj', 'weight', 'pve_forms', 'pmonth', 'pmonthname', 'phour', 'phourname', 'pminute', 'pminutename', 'pharm_ev', 'pharm_evname', 'pman_coll', 'pman_collname', 'occupants', 'pnumoccsname', 'moving', 'ptypename', 'hitrun', 'phit_runname', 'pvin', 'pvinname', 'v_year', 'pmodyearname', 'pvpicmake', 'pvpicmakename', 'pvpicmodel', 'pvpicmodelname', 'pvpicbodyclass', 'pvpicbodyclassname', 'v_make', 'pmakename', 'v_model', 'v_body', 'pbodytypname', 'picfinalbody', 'picfinalbodyname', 'pgvwr_from', 'pgvwr_fromname', 'gvwr', 'pgvwr_toname', 'trailer', 'ptrailername', 'ptrlr1vin', 'ptrlr1vinname', 'ptrlr2vin', 'ptrlr2vinname', 'ptrlr3vin', 'ptrlr3vinname', 'ptrlr1gvwr', 'ptrlr1gvwrname', 'ptrlr2gvwr', 'ptrlr2gvwrname', 'ptrlr3gvwr', 'ptrlr3gvwrname', 'pmcarr_id', 'pmcarr_idname', 'pmcarr_i1', 'pmcarr_i1name', 'pmcarr_i2', 'pmcarr_i2name', 'pv_config', 'pv_configname', 'cargo', 'pcargtypname', 'phaz_inv', 'phaz_invname', 'phazplac', 'phazplacname', 'phaz_id', 'phaz_idname', 'hazmat', 'phaz_cnoname', 'hzm_spill', 'phaz_relname', 'pbus_use', 'pbus_usename', 'special_v', 'psp_usename', 'pem_use', 'pem_usename', 'punderoverride', 'punderoverridename', 'impact', 'pimpact1name', 'damage', 'pveh_sevname', 'towed', 'ptowedname', 'most_harm', 'pm_harmname', 'fire', 'pfirename', 'make_model', 'pmak_modname', 'veh_id']
+NoneType: None
+----------------
+2025-01-23_22:04:35
+Error level: --Message-- 
+Message: 2021 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:2956
+Clean Count: 2956
+NoneType: None
+----------------
+2025-01-23_22:04:35
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2021CSV/PERSON.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:04:39
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2021CSV/PERSON.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:04:39
+Error level: --Message-- 
+Message: C:\Users\cojac/Projects/crss/data/readydata/ Person
+Error:
+Row counts match as expected.
+Raw Count:133734
+Clean Count: 133734
+NoneType: None
+----------------
+2025-01-23_22:05:30
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/sourcedata/'}
+NoneType: None
+----------------
+2025-01-23_22:05:30
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/readydata/'}
+NoneType: None
+----------------
+2025-01-23_22:05:41
+Error level: --Message-- 
+Message: Zipfile contents for 2022
+Error:
+['crss2022csv/accident.csv', 'crss2022csv/cevent.csv', 'crss2022csv/crashrf.csv', 'crss2022csv/damage.csv', 'crss2022csv/distract.csv', 'crss2022csv/drimpair.csv', 'crss2022csv/driverrf.csv', 'crss2022csv/factor.csv', 'crss2022csv/maneuver.csv', 'crss2022csv/nmcrash.csv', 'crss2022csv/nmdistract.csv', 'crss2022csv/nmimpair.csv', 'crss2022csv/nmprior.csv', 'crss2022csv/parkwork.csv', 'crss2022csv/pbtype.csv', 'crss2022csv/person.csv', 'crss2022csv/personrf.csv', 'crss2022csv/pvehiclesf.csv', 'crss2022csv/safetyeq.csv', 'crss2022csv/vehicle.csv', 'crss2022csv/vehiclesf.csv', 'crss2022csv/vevent.csv', 'crss2022csv/violatn.csv', 'crss2022csv/vision.csv', 'crss2022csv/vpicdecode.csv', 'crss2022csv/vpictrailerdecode.csv', 'crss2022csv/vsoe.csv', 'crss2022csv/weather.csv']
+NoneType: None
+----------------
+2025-01-23_22:05:44
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2022CSV/ACCIDENT.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:05:44
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2022CSV/ACCIDENT.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:05:44
+Error level: --Message-- 
+Message: 2022 Accident
+Error:
+Row counts match as expected.
+Raw Count:53955
+Clean Count: 53955
+NoneType: None
+----------------
+2025-01-23_22:05:45
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2022CSV/VEHICLE.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:05:49
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2022CSV/VEHICLE.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:05:49
+Error level: --Message-- 
+Message: 2022 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:94756
+Clean Count: 94756
+NoneType: None
+----------------
+2025-01-23_22:05:50
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2022CSV/PARKWORK.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:05:50
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2022CSV/PARKWORK.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:05:50
+Error level: ***ALERT!*** 
+Message: Missing columns in 2022 PARKWORK: [['injured', 'speedrel', 'veh_speed', 'speedlimit', 'driver_pres', 'acc_type', 'precrash', 'crit_event', 'attempt', 'stability', 'direction']]
+Error:
+Columns in dataframe:
+['case_num', 'veh_no', 'psu', 'psu_var', 'psustrat', 'region', 'regionname', 'urbanicity', 'urbanicityname', 'stratum', 'stratumname', 'pj', 'weight', 'pve_forms', 'pmonth', 'pmonthname', 'phour', 'phourname', 'pminute', 'pminutename', 'pharm_ev', 'pharm_evname', 'pman_coll', 'pman_collname', 'occupants', 'pnumoccsname', 'moving', 'ptypename', 'hitrun', 'phit_runname', 'pvin', 'pvinname', 'v_year', 'pmodyearname', 'pvpicmake', 'pvpicmakename', 'pvpicmodel', 'pvpicmodelname', 'pvpicbodyclass', 'pvpicbodyclassname', 'v_make', 'pmakename', 'v_model', 'v_body', 'pbodytypname', 'picfinalbody', 'picfinalbodyname', 'pgvwr_from', 'pgvwr_fromname', 'gvwr', 'pgvwr_toname', 'trailer', 'ptrailername', 'ptrlr1vin', 'ptrlr1vinname', 'ptrlr2vin', 'ptrlr2vinname', 'ptrlr3vin', 'ptrlr3vinname', 'ptrlr1gvwr', 'ptrlr1gvwrname', 'ptrlr2gvwr', 'ptrlr2gvwrname', 'ptrlr3gvwr', 'ptrlr3gvwrname', 'pmcarr_id', 'pmcarr_idname', 'pmcarr_i1', 'pmcarr_i1name', 'pmcarr_i2', 'pmcarr_i2name', 'pv_config', 'pv_configname', 'cargo', 'pcargtypname', 'phaz_inv', 'phaz_invname', 'phazplac', 'phazplacname', 'phaz_id', 'phaz_idname', 'hazmat', 'phaz_cnoname', 'hzm_spill', 'phaz_relname', 'pbus_use', 'pbus_usename', 'special_v', 'psp_usename', 'pem_use', 'pem_usename', 'punderoverride', 'punderoverridename', 'impact', 'pimpact1name', 'damage', 'pveh_sevname', 'towed', 'ptowedname', 'most_harm', 'pm_harmname', 'fire', 'pfirename', 'make_model', 'pmak_modname', 'veh_id']
+NoneType: None
+----------------
+2025-01-23_22:05:50
+Error level: --Message-- 
+Message: 2022 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:3012
+Clean Count: 3012
+NoneType: None
+----------------
+2025-01-23_22:05:50
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2022CSV/PERSON.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:05:53
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2022CSV/PERSON.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:05:53
+Error level: --Message-- 
+Message: C:\Users\cojac/Projects/crss/data/readydata/ Person
+Error:
+Row counts match as expected.
+Raw Count:132175
+Clean Count: 132175
+NoneType: None
+----------------
+2025-01-23_22:06:32
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/sourcedata/'}
+NoneType: None
+----------------
+2025-01-23_22:06:32
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/readydata/'}
+NoneType: None

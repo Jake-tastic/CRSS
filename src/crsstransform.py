@@ -1,107 +1,125 @@
-import pandas as pd
-import column_maps as cm
-import crss_logging as el
+import column_maps, crss_logging, sys, os, polars
 from charset_normalizer import detect
-import sys
-import os
 
-def detect_encoding(file_path):
+def load_file(file_path):
     """
-    Detect the encoding of a file and load it as a pandas DataFrame.
-    
-    Args:
-        file_path (str): Path to the file.
-        
-    Returns:
-        pd.DataFrame: Loaded DataFrame with the detected encoding.
+    Load CSV file using Polars and ensure all columns are read sa strings (Utf8)
     """
-    # determine encoding of file
-    with open(file_path, "rb")as enc_file:
-        raw_data = enc_file.read() 
-        result = detect(raw_data)
-        encoding = result.get("encoding", None)
-        el.logging(1, f"Encoding Detection: {file_path}", encoding)
+    try:
+        # detect file encoding
+        with open(file_path, "rb") as file:
+            raw_data = file.read()
+            encoding = detect(raw_data)["encoding"] or "utf-8"
+            # Log the detected encoding
+            crss_logging.logging(1, f"Detected encoding for {file_path}:", encoding)
         
-        if not encoding:
-            el.logging(2, "Unable to detect encoding.", Exception)
+        # detect problematic lines and clean
+        temp_path = file_path + ".temp"
+        with open(file_path, "r", encoding=encoding, errors="strict") as infile, open(temp_path, "w", encoding="utf-8") as outfile:
+            for i, line in enumerate(infile, start=1):
+                try:
+                    outfile.write(line)
+                except UnicodeDecodeError as e:
+                    crss_logging.logging(2, f"Problem on line {i}", f"{e}\nProblem bytes {line[e.start:e.end]}")
+                    cleaned_line = line.encode(encoding, error="replace").decode(encoding)
+                    outfile.write(cleaned_line)
 
-        # Try decoding and replacing problematic characters 
-        try:
-            decoded_data = raw_data.decode(encoding)
-        except UnicodeDecodeError as e:
-            el.logging(2, "Decoding errer encoutered. Attemping to replace problem characters.", e)
-            # decode with replaced errors
-            decoded_data = raw_data.decode(encoding, errors='replace')
-            el.logging(1, "Problem characters replaced", "Unicode replacement character: (�).")
-        # save to temporary CSV file
-        with open("clean_temp_file.csv", 'w', encoding=encoding) as f:
-            f.write(decoded_data)
-        try:
-            df = pd.read_csv("clean_temp_file.csv", low_memory=False)
-            el.logging(1, f"Data Types for: {file_path}", df.dtypes)
-        except:
-            el.logging(3, "detect_encoding() was unable to load csv into dataframe", Exception)
-           
-        return df
-                
+        # read file and retrieve column names
+        preview = polars.read_csv(
+            temp_path, n_rows=1, 
+            encoding=encoding, 
+            infer_schema_length=0)
+        column_names = preview.columns
 
+        # set all columns to Utf8
+        schema = {col: polars.Utf8 for col in column_names}
+
+        # load csv and force columns to Utf8 stings
+        raw_df = polars.read_csv(
+            temp_path,
+            schema=schema,
+            infer_schema=False
+            )
+
+        # Identify and retain only the "WEATHER" column, dropping others like "WEATHER1" or "WEATHER2"
+        weather_columns = [col for col in raw_df.columns if "weather" in col.lower()]
+        if len(weather_columns) > 1: # if multiple weather columns exist  (weather, weather1, weather2)
+            if "WEATHER" in weather_columns:
+                weather_columns.remove("WEATHER") # keep "WEATHER" and drop others
+            raw_df = raw_df.drop(weather_columns)
+
+        # convert column names to lowercase
+        ready_df = raw_df.rename({col: col.lower() for col in raw_df.columns})
+        
+        crss_logging.logging(1, f"Loaded file: {file_path}", "")
+        return ready_df
+    except:
+        crss_logging.logging(3, f"Failed to load file: {file_path}", Exception)
+        sys.exit(1)
+
+def rename_columns(dataframe, column_map):
+    """
+    Rename columns in a DataFrame using the column_map from column_maps.py.
+    """
+    mapping = column_map.get_map()
+    dataframe = dataframe.rename({old: new for old, new in mapping.items() if old in dataframe.columns})
+    return dataframe
 
 def transform_acc(a_cols, record_year, src_dir, rdy_dir):
-    try:
-        primary_path = (f"{src_dir}ACCIDENT.CSV")
-        secondary_path = (f"{src_dir}CRSS{record_year}CSV/ACCIDENT.CSV")
+
+    primary_path = (f"{src_dir}ACCIDENT.CSV")
+    secondary_path = (f"{src_dir}CRSS{record_year}CSV/ACCIDENT.CSV")
     
-        if os.path.exists(primary_path):
-            target_file = primary_path
-        elif os.path.exists(secondary_path):
-            target_file = secondary_path
-        else:
-            raise FileNotFoundError(f"ACCIDENT.CSV not found in expected locations for {record_year}")
-        # convert to pandas index
-        a_cols = pd.Index(a_cols)
+    if os.path.exists(primary_path):
+        target_file = primary_path
+    elif os.path.exists(secondary_path):
+        target_file = secondary_path
+    else:
+        raise FileNotFoundError(f"ACCIDENT.CSV not found in expected locations for {record_year}")
+    
+    # initialize variables for row count logging
+    raw_count = 0
+    clean_count = 0
 
-        # load file
-        acc = detect_encoding(target_file)
+    try:
+        # retrieve dataframe
+        acc_df = load_file(target_file)
 
-        # log column names and count rows
-        raw_count = len(acc.index)
-        el.logging(1, f"{record_year} Raw cols accident.csv: ", list(acc.columns))
+        # log row count before transformations
+        raw_count += acc_df.height
 
-        # check for and remove duplicate columns
-        if acc.columns.duplicated().any():
-            el.logging(1, "Duplicate columns detected", acc.columns[acc.columns.duplicated()].tolist())
-            acc = acc.loc[:, ~acc.columns.duplicated()]
+        # rename columns using column_maps
+        acc_df = rename_columns(acc_df, column_maps.accident)
 
-        # make columns lowercase, remove white space, and rename
-        acc.columns = acc.columns.str.lower().str.strip()
-        acc.rename(columns=cm.accident.get_map(), inplace=True)
-        el.logging(1, "Renamed cols accident.csv: ", list(acc.columns))
-
-        # create and populate columns acc_date and acc_time
-        acc['acc_date'] = (str(record_year) + 
-                           acc['month'].astype(str).str.zfill(2)).astype(int)
-        acc['acc_time'] = ('1' + acc['hour'].astype(str).str.zfill(2) + 
-                           acc['minute'].astype(str).str.zfill(2)).astype(int)
-
-        # remove duplicates again after renaming
-        if acc.columns.duplicated().any():
-            el.logging(1, "Duplicate columns detected again", acc.columns[acc.columns.duplicated()].tolist())
-            acc = acc.loc[:, ~acc.columns.duplicated()]
-
-        acc.drop(columns=acc.columns.difference(a_cols), inplace=True, errors="ignore")
-
-        # align datafram with database schema (add missing columns as NaN)
-        acc = acc.reindex(columns=a_cols, fill_value=pd.NA)
-
-        # count rows again for comparison and log
-        clean_count = len(acc.index)
-        el.row_counts(f"{record_year} Accident", raw_count, clean_count)
-
-        # overwrite the accident file with the new dataframe
-        acc.to_csv(f"{rdy_dir}ACCIDENT.CSV", index=False, encoding="utf-8")
+        # transformations
+        acc_df = acc_df.with_columns([
+            (acc_df["case_num"].cast(polars.Utf8).str.slice(2)).alias("case_num"),
+            (polars.lit(record_year).cast(polars.Utf8) + acc_df["month"].cast(polars.Utf8).str.zfill(2)).alias("acc_date"),
+            (polars.lit("1") + acc_df["hour"].cast(polars.Utf8).str.zfill(2) + acc_df["minute"].cast(polars.Utf8).str.zfill(2)).alias("acc_time")
+            ])
+        
+        # validate columns in renamed dataframe
+        missing_columns = [col for col in a_cols if col not in acc_df.columns]
+        if missing_columns:
+            crss_logging.logging(
+                                3, 
+                                f"Missing columns in: {record_year} ACCIDENT: [{missing_columns}]", 
+                                f"Columns in dataframe:\n{acc_df.columns}"
+                                )
+        
+        acc_df = acc_df.select(a_cols)
+        
+        # log row count after transformations
+        clean_count += acc_df.height
+        crss_logging.row_counts(f"{record_year} Accident", raw_count, clean_count)
+        
+        # retain only required columns and write output
+        acc_df = acc_df.select([col for col in a_cols])
+        acc_df.write_csv(f"{rdy_dir}ACCIDENT.CSV", include_header=True)
+        
         print("......Accident file transformation complete!")
     except:
-        el.logging(3, "Transforming accident file ", Exception)
+        crss_logging.logging(3, "Transforming accident file ", Exception)
         sys.exit(1)
 
 def transform_veh(v_cols, record_year, src_dir, rdy_dir):
@@ -112,129 +130,143 @@ def transform_veh(v_cols, record_year, src_dir, rdy_dir):
         v_cols (list): List of columns required in the database.
     """
     try:
-        # convert to a pandas index
-        v_cols = pd.Index(v_cols)
 
         # files to merge
         vehicles = "VEHICLE", "PARKWORK"
-        combined_data = []
+        file_count = 0
 
         for v in vehicles:
             primary_path = (f"{src_dir}{v}.CSV")
             secondary_path = (f"{src_dir}CRSS{record_year}CSV/{v}.CSV")
+
+            # initialize variables for row count logging
+            raw_count = 0
+            clean_count = 0
+
 
             if os.path.exists(primary_path):
                 target_file = primary_path
             elif os.path.exists(secondary_path):
                 target_file = secondary_path
             else:
-                raise FileNotFoundError(f"ACCIDENT.CSV not found in expected locations for {record_year}")
-            
-            # load the vehicle or parkwork file
-            veh = detect_encoding(target_file)
+                raise FileNotFoundError(f"{v}.CSV not found in expected locations for {record_year}")
 
-            # log column names and count rows
-            raw_count = len(veh.index)
-            el.logging(1, f"{record_year} Raw cols {v} ", list(veh.columns))
+            try:
+                # load the vehicle or parkwork file
+                veh_df = load_file(target_file)
 
-            # check for and remove duplicate columns
-            if veh.columns.duplicated().any():
-                el.logging(1, "Duplicate columns detected", veh.columns[veh.columns.duplicated()].tolist())
-                acc = veh.loc[:, ~veh.columns.duplicated()]
+                veh_df = rename_columns(veh_df, column_maps.vehicle)
 
-            # make columns all lower case and remove white space
-            veh.columns = veh.columns.str.lower().str.strip()
+                # log row count before transformations
+                raw_count += veh_df.height
 
-            # rename columns to match database using column_maps
-            veh.rename(columns=cm.vehicle.get_map(), inplace=True)
-            el.logging(1, f"Renamed cols {v}: ", list(veh.columns))
+                # transformations
+                veh_df = veh_df.with_columns([
+                    (veh_df["case_num"].cast(polars.Utf8).str.slice(2)).alias("case_num")
+                    ])
+                veh_df = veh_df.with_columns([
+                    (veh_df["case_num"] + veh_df["veh_no"].cast(polars.Utf8).str.zfill(2)).alias("veh_id")
+                    ])
+                
+                # validate columns in renamed dataframe
+                missing_columns = [col for col in v_cols if col not in veh_df.columns]
+                if missing_columns:
+                    crss_logging.logging(
+                                        3, 
+                                        f"Missing columns in {record_year} {v}: [{missing_columns}]", 
+                                        f"Columns in dataframe:\n{veh_df.columns}"
+                                        )
+                for col in missing_columns:
+                    veh_df = veh_df.with_columns(polars.lit("0").cast(polars.Utf8).alias(col))
 
-            # combine columns casenum and veh_no to create unique vehicle id
-            # remove first two digits of casenum (first four are year: strip 2016 to 16)
-            veh["veh_id"] = (veh["case_num"].astype(str).str[2:] + 
-                             veh["veh_no"].astype(str).str.zfill(2))
+                # retain only required columns
+                veh_df = veh_df.select(v_cols)
 
-            veh.drop(columns=veh.columns.difference(v_cols), inplace=True, errors="ignore")
+                # row count after transformations and log for comparison 
+                clean_count = veh_df.height
+                crss_logging.row_counts(f"{record_year} Vehicle", raw_count, clean_count)
 
-            # align dataframe with database schema and append
-            veh = veh.reindex(columns=v_cols, fill_value=pd.NA)
-            
-            # count rows again for comparison and log
-            clean_count = len(veh.index)
-            el.row_counts(f"{record_year}{v}", raw_count, clean_count)
+                # write to output
+                output_file = f"{rdy_dir}VEHICLE.CSV"
+                if os.path.exists(f"{rdy_dir}VEHICLE.CSV"):
+                    existing_df = polars.read_csv(output_file)
 
-            # combine vehicle and parkwork dataframes and save
-            combined_data.append(veh)
-            veh_final = pd.concat(combined_data, ignore_index=True)
-            veh_final.to_csv(f"{rdy_dir}VEHICLES.CSV", index=False, encoding="utf-8")
-        print("......Vehicle file transformation complete!")
+                    # ensure both dataframes have matching datatypes
+                    for col in veh_df.columns:
+                        if col in existing_df.columns:
+                            veh_df = veh_df.with_columns(
+                                veh_df[col].cast(existing_df[col].dtype).alias(col)
+                            )
+                        else:
+                            crss_logging.logging(2, f"Columns '{col}' is missing in existing_df", "Skipping type adjustment")
+                        
+                    # concatenate dataframes
+                    veh_df = polars.concat([existing_df, veh_df])
+                veh_df.write_csv(output_file, include_header=True)
+                
+            except:
+                crss_logging.logging(3, f"{record_year} Vehicle transformation failed", Exception)
+                sys.exit(1)
+        
+        
+        print("......Vehicle file transfomration complete!")
     except:
-        el.error_log(3, f"Transforming vehicle file: {v}", Exception)
+        crss_logging.logging(3, "Tranforming Vehicle file", Exception)
         sys.exit(1)
-    
+
 def transform_per(p_cols, record_year, src_dir, rdy_dir):
     try:
         primary_path = (f"{src_dir}PERSON.CSV")
         secondary_path = (f"{src_dir}CRSS{record_year}CSV/PERSON.CSV")
+
+        # initialize variables for row count logging
+        raw_count = 0
+        clean_count = 0
     
         if os.path.exists(primary_path):
             target_file = primary_path
         elif os.path.exists(secondary_path):
             target_file = secondary_path
         else:
-            raise FileNotFoundError(f"ACCIDENT.CSV not found in expected locations for {record_year}")
-        # convert to a pandas index
-        p_cols = pd.Index(p_cols)
+            raise FileNotFoundError(f"PERSON.CSV not found in expected locations for {record_year}")
 
-        # open the file
-        per = detect_encoding(target_file)
+        # load the person file and retrieve Spark dataframe
+        per_df = load_file(target_file)
 
-        # log column names and count rows
-        raw_count = len(per.index)
-        el.logging(1, f"{record_year} Raw cols person.csv: ", list(per.columns))
+        # log row count before transformations
+        raw_count += per_df.height
 
-        # check for and remove duplicate columns
-        if per.columns.duplicated().any():
-            el.logging(1, "Duplicate columns detected", per.columns[per.columns.duplicated()].tolist())
-            per = per.loc[:, ~per.columns.duplicated()]
+        # rename columns using column_maps
+        per_df = rename_columns(per_df, column_maps.person)
 
-        # make columns lower case and remove white space
-        per.columns = per.columns.str.lower().str.strip()
+        # transformations
+        per_df = per_df.with_columns([(per_df["case_num"].cast(polars.Utf8).str.slice(2)).alias("case_num")])
+        per_df = per_df.with_columns([(per_df["case_num"] + per_df["veh_no"].cast(polars.Utf8).str.zfill(2)).alias("veh_id")])
+        per_df = per_df.with_columns([(per_df["veh_id"] + per_df["per_no"].cast(polars.Utf8).str.zfill(2)).alias("per_id")])
 
-        # use column_maps to rename columns to corrisponding names
-        per.rename(columns=cm.person.get_map(), inplace=True)
-        el.logging(1, "Renamed cols person.csv: ", list(per.columns))
+        # validate columns in renamed dataframe
+        missing_columns = [col for col in p_cols if col not in per_df.columns]
+        if missing_columns:
+            crss_logging.logging(
+                                3, 
+                                f"Missing columns in {record_year} PERSON: [{missing_columns}]", 
+                                f"Columns in dataframe:\n{per_df.columns}"
+                                )
+        
 
-        # ensure required columns exist
-        required_cols = ["case_num", "veh_no"]
-        for col in required_cols:
-            if col not in per.columns:
-                print(f"......Missing columns {col} in PERSON.CSV. Filling with default values")
-                per[col] = ""
+        # retain only required columns and write output csv
+        per_df = per_df.select(p_cols)
 
-        # not every person is an occupant of a vehicle
-        # in these cases, make veh_no 99
-        per["veh_no"] = per["veh_no"].fillna(99)
+        # row count after transformations and log for comparison 
+        clean_count += per_df.height
+        crss_logging.row_counts(f"{rdy_dir} Person", raw_count, clean_count)
 
-         # combine columns casenum and veh_no to match the veh_id in the vehicle table
-        # remove first two digits of casenum (first four are year: strip 2016 to 16)
-        per["veh_id"] = (per["case_num"].astype(str).str[2:] + 
-                         per["veh_no"].astype(str).str.zfill(2))
-
-        per.drop(columns=per.columns.difference(p_cols), inplace=True, errors="ignore")
-
-        # align dataframe with database schema (add missing columns as NaN)
-        per = per.reindex(columns=p_cols, fill_value=pd.NA)
-
-        # count rows again for comparison and log
-        clean_count = len(per.index)
-        el.row_counts(f"{record_year} Person", raw_count, clean_count)
-
-        # rewrite the person.csv file
-        per.to_csv(f"{rdy_dir}PERSON.CSV", index=False, encoding="utf-8")
+        # write dataframe to csv file
+        per_df.write_csv(f"{rdy_dir}PERSON.CSV", include_header=True)
         print("......Person file transfomration complete!")
+
     except:
-        el.error_log(3, "Tranforming Person file", Exception)
+        crss_logging.logging(3, "Tranforming Person file", Exception)
         sys.exit(1)
 
 def crss_transform(a_col, v_col, p_col, record_year, src_dir, rdy_dir):
@@ -246,10 +278,3 @@ def crss_transform(a_col, v_col, p_col, record_year, src_dir, rdy_dir):
     transform_acc(a_col, record_year = record_year, src_dir=src_dir, rdy_dir=rdy_dir)
     transform_veh(v_col, record_year = record_year, src_dir=src_dir, rdy_dir=rdy_dir)
     transform_per(p_col, record_year = record_year, src_dir=src_dir, rdy_dir=rdy_dir)
-
-if __name__ == "__main__":
-    acols = cm.accident.columns.split(",") if isinstance(cm.accident.columns, str) else cm.accident.columns
-    vcols = cm.vehicle.columns.split(",") if isinstance(cm.vehicle.columns, str) else cm.vehicle.columns
-    pcols = cm.person.columns.split(",") if isinstance(cm.person.columns, str) else cm.person.columns
-
-    crss_transform(acols, vcols, pcols)

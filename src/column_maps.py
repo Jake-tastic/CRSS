@@ -61,13 +61,13 @@ accident = colmap({
 
 vehicle = colmap({
     "case_num" : ["casenum"],
-    "v_year" : ["mdlyr_im", "pmodyear"],
-    "v_make" : ["vpicmake", "pvpicmake"],
-    "v_model": ["vpicmodel", "pvpicmodel"],
-    "v_body" : ["vpicbodyclass", "pvpicbodyclass"],
+    "v_year" : ["mod_year", "pmodyear"],
+    "v_make" : ["make", "pmake"],
+    "v_model": ["model", "pmodel"],
+    "v_body" : ["body_typ", "pbodytyp"],
     "gvwr" : ["gvwr_to", "pgvwr_to", "pgvwr"],
     "special_v" : ["spec_use", "psp_use"],
-    "moving" : ["unittype", "ptype"],
+    "moving" : ["unittype", "ptype", "PTYPE"],
     "occupants" : ["numoccs", "pnumoccs"],
     "injured" : ["numinj_im"],
     "trailer" : ["tow_veh", "ptrailer"],
@@ -76,13 +76,19 @@ vehicle = colmap({
     "hzm_spill" : ["haz_rel", "phaz_rel"],
     "veh_speed" : ["trav_sp"],
     "speedlimit" : ["vspd_lim"],
+    "impact" : ["impact1", "pimpact1"],
     "damage" :["deformed", "pveh_sev"],
     "most_harm" : ["vevent_im", "pm_harm"],
     "fire" : ["fire_exp", "pfire"],
     "driver_pres" : ["dr_pres"],
     "hitrun" : ["hit_run", "phit_run"],
     "towed" : ["ptowed"],
-    "acc_type" : ["ptype"]
+    "make_model" : ["pmak_mod", "mak_mod"],
+    "precrash" : ["p_crash1"],
+    "crit_event" : ["p_crash2"],
+    "attempt" : ["p_crash3"],
+    "stability" : ["pcrash4"],
+    "direction": ["pcrash5"]
 })
 
 person = colmap({
@@ -90,7 +96,9 @@ person = colmap({
     "injury" : ["injsev_im"],
     "seat" : ["seat_im"],
     "eject" : ["eject_im"],
-    "alcohol" : ["peralch_im"]
+    "alcohol" : ["peralch_im"],
+    "per_type" : ["per_typ"],
+    "safety_misuse" : ["rest_mis"]
 })
 
 if __name__=="__main__":
