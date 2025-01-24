@@ -89,7 +89,13 @@ def crss_etl (record_years, files, src, rdy, arch):
     # Database connection 
     try:
         db_pass = input("Enter database password")
-        db_con = mysql.connector.connect(user="root", password=db_pass, database="crss", port=3306)
+        db_con = mysql.connector.connect(
+            user="root", 
+            password=db_pass, 
+            database="crss", 
+            port=3306,
+            charset="utf8mb4"
+            )
         db_curs = db_con.cursor()
     except:
         el.logging(3, "Connecting to database:", mysql.connector.Error)
@@ -152,7 +158,10 @@ def crss_etl (record_years, files, src, rdy, arch):
 
                     # ensure column datatypes match database schema
                     for col in crss_df.columns:
-                        crss_df[col] = pandas.to_numeric(crss_df[col], errors='coerce', downcast='integer').fillna(0).astype(int)
+                        if col in ["case_num", "veh_id", "per_id"]:
+                            crss_df[col] = pandas.to_numeric(crss_df[col], errors='coerce').fillna(0).astype("int64")
+                        else:
+                            crss_df[col] = pandas.to_numeric(crss_df[col], errors='coerce', downcast='integer').fillna(0).astype(int)
 
                     # generate parameterized SQL statement
                     load_ready = ld.db_insert(crss[key]["db_table"], df_cols)

@@ -3,7 +3,7 @@ from charset_normalizer import detect
 
 def load_file(file_path):
     """
-    Load CSV file using Polars and ensure all columns are read sa strings (Utf8)
+    Load CSV file using Polars and ensure all columns are read as strings (Utf8)
     """
     try:
         # detect file encoding
@@ -211,7 +211,7 @@ def transform_veh(v_cols, record_year, src_dir, rdy_dir):
         
         print("......Vehicle file transfomration complete!")
     except:
-        crss_logging.logging(3, "Tranforming Vehicle file", Exception)
+        
         sys.exit(1)
 
 def transform_per(p_cols, record_year, src_dir, rdy_dir):
