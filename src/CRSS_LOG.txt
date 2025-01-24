@@ -907,3 +907,864 @@ Message: Contents of directory cleared
 Error:
 {'C:\\Users\\cojac/Projects/crss/data/readydata/'}
 NoneType: None
+----------------
+2025-01-23_22:23:32
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/sourcedata/'}
+NoneType: None
+----------------
+2025-01-23_22:23:32
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/readydata/'}
+NoneType: None
+----------------
+2025-01-23_22:24:02
+Error level: --Message-- 
+Message: Zipfile contents for 2016
+Error:
+['accident.csv', 'cevent.csv', 'damage.csv', 'distract.csv', 'drimpair.csv', 'factor.csv', 'maneuver.csv', 'nmcrash.csv', 'nmimpair.csv', 'nmprior.csv', 'parkwork.csv', 'pbtype.csv', 'person.csv', 'safetyeq.csv', 'vehicle.csv', 'vevent.csv', 'violatn.csv', 'vision.csv', 'vpicdecode.csv', 'vpictrailerdecode.csv', 'vsoe.csv']
+NoneType: None
+----------------
+2025-01-23_22:24:03
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/ACCIDENT.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:24:03
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/ACCIDENT.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:24:03
+Error level: --Message-- 
+Message: 2016 Accident
+Error:
+Row counts match as expected.
+Raw Count:46511
+Clean Count: 46511
+NoneType: None
+----------------
+2025-01-23_22:24:03
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/VEHICLE.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:24:04
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/VEHICLE.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:24:04
+Error level: --Message-- 
+Message: 2016 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:82149
+Clean Count: 82149
+NoneType: None
+----------------
+2025-01-23_22:24:04
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/PARKWORK.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:24:04
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/PARKWORK.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:24:04
+Error level: ***ALERT!*** 
+Message: Missing columns in 2016 PARKWORK: [['injured', 'speedrel', 'veh_speed', 'speedlimit', 'driver_pres', 'acc_type', 'precrash', 'crit_event', 'attempt', 'stability', 'direction']]
+Error:
+Columns in dataframe:
+['case_num', 'veh_no', 'psu', 'pj', 'stratum', 'pve_forms', 'occupants', 'pmonth', 'phour', 'pminute', 'pharm_ev', 'pman_coll', 'moving', 'hitrun', 'v_make', 'v_model', 'make_model', 'v_body', 'v_year', 'pvin', 'trailer', 'pmcarr_i1', 'pmcarr_i2', 'pmcarr_id', 'gvwr', 'pv_config', 'cargo', 'phaz_inv', 'phazplac', 'phaz_id', 'hazmat', 'hzm_spill', 'pbus_use', 'special_v', 'pem_use', 'impact', 'damage', 'towed', 'most_harm', 'pveh_sc1', 'pveh_sc2', 'fire', 'ptrlr1vin', 'ptrlr2vin', 'ptrlr3vin', 'urbanicity', 'region', 'psustrat', 'psu_var', 'weight', 'veh_id']
+NoneType: None
+----------------
+2025-01-23_22:24:04
+Error level: --Message-- 
+Message: 2016 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:2267
+Clean Count: 2267
+NoneType: None
+----------------
+2025-01-23_22:24:04
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/PERSON.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:24:04
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/PERSON.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:24:04
+Error level: --Message-- 
+Message: C:\Users\cojac/Projects/crss/data/readydata/ Person
+Error:
+Row counts match as expected.
+Raw Count:117759
+Clean Count: 117759
+NoneType: None
+----------------
+2025-01-23_22:24:27
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/sourcedata/'}
+NoneType: None
+----------------
+2025-01-23_22:24:27
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/readydata/'}
+NoneType: None
+----------------
+2025-01-23_22:24:32
+Error level: --Message-- 
+Message: Zipfile contents for 2017
+Error:
+['accident.csv', 'cevent.csv', 'damage.csv', 'distract.csv', 'drimpair.csv', 'factor.csv', 'maneuver.csv', 'nmcrash.csv', 'nmimpair.csv', 'nmprior.csv', 'parkwork.csv', 'pbtype.csv', 'person.csv', 'safetyeq.csv', 'vehicle.csv', 'vevent.csv', 'violatn.csv', 'vision.csv', 'vpicdecode.csv', 'vpictrailerdecode.csv', 'vsoe.csv']
+NoneType: None
+----------------
+2025-01-23_22:24:32
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/ACCIDENT.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:24:33
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/ACCIDENT.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:24:33
+Error level: --Message-- 
+Message: 2017 Accident
+Error:
+Row counts match as expected.
+Raw Count:54969
+Clean Count: 54969
+NoneType: None
+----------------
+2025-01-23_22:24:33
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/VEHICLE.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:24:33
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/VEHICLE.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:24:33
+Error level: --Message-- 
+Message: 2017 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:97625
+Clean Count: 97625
+NoneType: None
+----------------
+2025-01-23_22:24:34
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/PARKWORK.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:24:34
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/PARKWORK.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:24:34
+Error level: ***ALERT!*** 
+Message: Missing columns in 2017 PARKWORK: [['injured', 'speedrel', 'veh_speed', 'speedlimit', 'driver_pres', 'acc_type', 'precrash', 'crit_event', 'attempt', 'stability', 'direction']]
+Error:
+Columns in dataframe:
+['case_num', 'veh_no', 'region', 'psu', 'pj', 'psu_var', 'urbanicity', 'stratum', 'pve_forms', 'occupants', 'pmonth', 'phour', 'pminute', 'pharm_ev', 'pman_coll', 'moving', 'hitrun', 'v_make', 'v_model', 'make_model', 'v_body', 'v_year', 'pvin', 'trailer', 'pmcarr_i1', 'pmcarr_i2', 'pmcarr_id', 'gvwr', 'pv_config', 'cargo', 'phaz_inv', 'phazplac', 'phaz_id', 'hazmat', 'hzm_spill', 'pbus_use', 'special_v', 'pem_use', 'impact', 'damage', 'towed', 'most_harm', 'pveh_sc1', 'pveh_sc2', 'fire', 'ptrlr1vin', 'ptrlr2vin', 'ptrlr3vin', 'psustrat', 'weight', 'veh_id']
+NoneType: None
+----------------
+2025-01-23_22:24:34
+Error level: --Message-- 
+Message: 2017 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:2850
+Clean Count: 2850
+NoneType: None
+----------------
+2025-01-23_22:24:34
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/PERSON.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:24:34
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/PERSON.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:24:34
+Error level: --Message-- 
+Message: C:\Users\cojac/Projects/crss/data/readydata/ Person
+Error:
+Row counts match as expected.
+Raw Count:138913
+Clean Count: 138913
+NoneType: None
+----------------
+2025-01-23_22:25:04
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/sourcedata/'}
+NoneType: None
+----------------
+2025-01-23_22:25:04
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/readydata/'}
+NoneType: None
+----------------
+2025-01-23_22:25:09
+Error level: --Message-- 
+Message: Zipfile contents for 2018
+Error:
+['accident.csv', 'cevent.csv', 'damage.csv', 'distract.csv', 'drimpair.csv', 'factor.csv', 'maneuver.csv', 'nmcrash.csv', 'nmimpair.csv', 'nmprior.csv', 'parkwork.csv', 'pbtype.csv', 'person.csv', 'safetyeq.csv', 'vehicle.csv', 'vevent.csv', 'violatn.csv', 'vision.csv', 'vpicdecode.csv', 'vpictrailerdecode.csv', 'vsoe.csv']
+NoneType: None
+----------------
+2025-01-23_22:25:10
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/ACCIDENT.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:25:10
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/ACCIDENT.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:25:10
+Error level: --Message-- 
+Message: 2018 Accident
+Error:
+Row counts match as expected.
+Raw Count:48443
+Clean Count: 48443
+NoneType: None
+----------------
+2025-01-23_22:25:10
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/VEHICLE.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:25:11
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/VEHICLE.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:25:11
+Error level: --Message-- 
+Message: 2018 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:86105
+Clean Count: 86105
+NoneType: None
+----------------
+2025-01-23_22:25:11
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/PARKWORK.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:25:11
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/PARKWORK.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:25:11
+Error level: ***ALERT!*** 
+Message: Missing columns in 2018 PARKWORK: [['injured', 'speedrel', 'veh_speed', 'speedlimit', 'driver_pres', 'acc_type', 'precrash', 'crit_event', 'attempt', 'stability', 'direction']]
+Error:
+Columns in dataframe:
+['case_num', 'veh_no', 'region', 'psu', 'pj', 'psu_var', 'urbanicity', 'stratum', 'pve_forms', 'occupants', 'pmonth', 'phour', 'pminute', 'pharm_ev', 'pman_coll', 'moving', 'hitrun', 'v_make', 'v_model', 'make_model', 'v_body', 'v_year', 'pvin', 'trailer', 'pmcarr_i1', 'pmcarr_i2', 'pmcarr_id', 'gvwr', 'pv_config', 'cargo', 'phaz_inv', 'phazplac', 'phaz_id', 'hazmat', 'hzm_spill', 'pbus_use', 'special_v', 'pem_use', 'impact', 'damage', 'towed', 'most_harm', 'pveh_sc1', 'pveh_sc2', 'fire', 'ptrlr1vin', 'ptrlr2vin', 'ptrlr3vin', 'psustrat', 'weight', 'veh_id']
+NoneType: None
+----------------
+2025-01-23_22:25:11
+Error level: --Message-- 
+Message: 2018 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:2577
+Clean Count: 2577
+NoneType: None
+----------------
+2025-01-23_22:25:11
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/PERSON.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:25:11
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/PERSON.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:25:11
+Error level: --Message-- 
+Message: C:\Users\cojac/Projects/crss/data/readydata/ Person
+Error:
+Row counts match as expected.
+Raw Count:120230
+Clean Count: 120230
+NoneType: None
+----------------
+2025-01-23_22:25:47
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/sourcedata/'}
+NoneType: None
+----------------
+2025-01-23_22:25:47
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/readydata/'}
+NoneType: None
+----------------
+2025-01-23_22:25:58
+Error level: --Message-- 
+Message: Zipfile contents for 2019
+Error:
+['accident.csv', 'cevents.csv', 'damage.csv', 'distract.csv', 'drimpair.csv', 'factor.csv', 'maneuver.csv', 'nmcrash.csv', 'nmdistract.csv', 'nmimpair.csv', 'nmprior.csv', 'parkwork.csv', 'pbtype.csv', 'person.csv', 'safetyeq.csv', 'vehicle.csv', 'vevent.csv', 'violatn.csv', 'vision.csv', 'vpicdecode.csv', 'vpictrailerdecode.csv', 'vsoe.csv']
+NoneType: None
+----------------
+2025-01-23_22:25:59
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/ACCIDENT.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:26:00
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/ACCIDENT.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:26:00
+Error level: --Message-- 
+Message: 2019 Accident
+Error:
+Row counts match as expected.
+Raw Count:54409
+Clean Count: 54409
+NoneType: None
+----------------
+2025-01-23_22:26:30
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/VEHICLE.CSV:
+Error:
+windows-1250
+NoneType: None
+----------------
+2025-01-23_22:26:35
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/VEHICLE.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:26:35
+Error level: --Message-- 
+Message: 2019 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:96717
+Clean Count: 96717
+NoneType: None
+----------------
+2025-01-23_22:26:37
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/PARKWORK.CSV:
+Error:
+windows-1250
+NoneType: None
+----------------
+2025-01-23_22:26:37
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/PARKWORK.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:26:37
+Error level: ***ALERT!*** 
+Message: Missing columns in 2019 PARKWORK: [['injured', 'speedrel', 'veh_speed', 'speedlimit', 'driver_pres', 'acc_type', 'precrash', 'crit_event', 'attempt', 'stability', 'direction']]
+Error:
+Columns in dataframe:
+['case_num', 'veh_no', 'stratum', 'stratumname', 'region', 'regionname', 'psu', 'pj', 'psu_var', 'urbanicity', 'urbanicityname', 'pve_forms', 'occupants', 'pnumoccsname', 'pmonth', 'pmonthname', 'phour', 'phourname', 'pminute', 'pminutename', 'pharm_ev', 'pharm_evname', 'pman_coll', 'pman_collname', 'moving', 'ptypename', 'hitrun', 'phit_runname', 'v_make', 'pmakename', 'v_model', 'make_model', 'pmak_modname', 'v_body', 'pbodytypname', 'v_year', 'pmodyearname', 'pvin', 'pvinname', 'trailer', 'ptrailername', 'pmcarr_i1', 'pmcarr_i1name', 'pmcarr_i2', 'pmcarr_i2name', 'pmcarr_id', 'pmcarr_idname', 'gvwr', 'pgvwrname', 'pv_config', 'pv_configname', 'cargo', 'pcargtypname', 'phaz_inv', 'phaz_invname', 'phazplac', 'phazplacname', 'phaz_id', 'phaz_idname', 'hazmat', 'phaz_cnoname', 'hzm_spill', 'phaz_relname', 'pbus_use', 'pbus_usename', 'special_v', 'psp_usename', 'pem_use', 'pem_usename', 'impact', 'pimpact1name', 'damage', 'pveh_sevname', 'towed', 'ptowedname', 'most_harm', 'pm_harmname', 'pveh_sc1', 'pveh_sc1name', 'pveh_sc2', 'pveh_sc2name', 'fire', 'pfirename', 'ptrlr1vin', 'ptrlr1vinname', 'ptrlr2vin', 'ptrlr2vinname', 'ptrlr3vin', 'ptrlr3vinname', 'psustrat', 'weight', 'veh_id']
+NoneType: None
+----------------
+2025-01-23_22:26:37
+Error level: --Message-- 
+Message: 2019 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:2799
+Clean Count: 2799
+NoneType: None
+----------------
+2025-01-23_22:27:00
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/PERSON.CSV:
+Error:
+windows-1250
+NoneType: None
+----------------
+2025-01-23_22:27:02
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/PERSON.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:27:03
+Error level: --Message-- 
+Message: C:\Users\cojac/Projects/crss/data/readydata/ Person
+Error:
+Row counts match as expected.
+Raw Count:135410
+Clean Count: 135410
+NoneType: None
+----------------
+2025-01-23_22:27:34
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/sourcedata/'}
+NoneType: None
+----------------
+2025-01-23_22:27:34
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/readydata/'}
+NoneType: None
+----------------
+2025-01-23_22:27:45
+Error level: --Message-- 
+Message: Zipfile contents for 2020
+Error:
+['crss2020csv/accident.csv', 'crss2020csv/cevent.csv', 'crss2020csv/crashrf.csv', 'crss2020csv/damage.csv', 'crss2020csv/distract.csv', 'crss2020csv/drimpair.csv', 'crss2020csv/driverrf.csv', 'crss2020csv/factor.csv', 'crss2020csv/maneuver.csv', 'crss2020csv/nmcrash.csv', 'crss2020csv/nmdistract.csv', 'crss2020csv/nmimpair.csv', 'crss2020csv/nmprior.csv', 'crss2020csv/parkwork.csv', 'crss2020csv/pbtype.csv', 'crss2020csv/person.csv', 'crss2020csv/personrf.csv', 'crss2020csv/pvehiclesf.csv', 'crss2020csv/safetyeq.csv', 'crss2020csv/vehicle.csv', 'crss2020csv/vehiclesf.csv', 'crss2020csv/vevent.csv', 'crss2020csv/violatn.csv', 'crss2020csv/vision.csv', 'crss2020csv/vpicdecode.csv', 'crss2020csv/vpictrailerdecode.csv', 'crss2020csv/vsoe.csv', 'crss2020csv/weather.csv']
+NoneType: None
+----------------
+2025-01-23_22:27:47
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2020CSV/ACCIDENT.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:27:47
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2020CSV/ACCIDENT.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:27:47
+Error level: --Message-- 
+Message: 2020 Accident
+Error:
+Row counts match as expected.
+Raw Count:54745
+Clean Count: 54745
+NoneType: None
+----------------
+2025-01-23_22:28:18
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2020CSV/VEHICLE.CSV:
+Error:
+windows-1250
+NoneType: None
+----------------
+2025-01-23_22:28:32
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2020CSV/VEHICLE.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:28:32
+Error level: --Message-- 
+Message: 2020 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:94718
+Clean Count: 94718
+NoneType: None
+----------------
+2025-01-23_22:28:34
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2020CSV/PARKWORK.CSV:
+Error:
+windows-1250
+NoneType: None
+----------------
+2025-01-23_22:28:34
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2020CSV/PARKWORK.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:28:34
+Error level: ***ALERT!*** 
+Message: Missing columns in 2020 PARKWORK: [['injured', 'speedrel', 'veh_speed', 'speedlimit', 'driver_pres', 'acc_type', 'precrash', 'crit_event', 'attempt', 'stability', 'direction']]
+Error:
+Columns in dataframe:
+['case_num', 'veh_no', 'stratum', 'stratumname', 'region', 'regionname', 'psu', 'pj', 'psu_var', 'urbanicity', 'urbanicityname', 'pve_forms', 'occupants', 'pnumoccsname', 'pmonth', 'pmonthname', 'phour', 'phourname', 'pminute', 'pminutename', 'pharm_ev', 'pharm_evname', 'pman_coll', 'pman_collname', 'moving', 'ptypename', 'hitrun', 'phit_runname', 'v_make', 'pmakename', 'v_model', 'make_model', 'pmak_modname', 'v_body', 'pbodytypname', 'v_year', 'pmodyearname', 'pvin', 'pvinname', 'trailer', 'ptrailername', 'pmcarr_i1', 'pmcarr_i1name', 'pmcarr_i2', 'pmcarr_i2name', 'pmcarr_id', 'pmcarr_idname', 'pv_config', 'pv_configname', 'cargo', 'pcargtypname', 'phaz_inv', 'phaz_invname', 'phazplac', 'phazplacname', 'phaz_id', 'phaz_idname', 'hazmat', 'phaz_cnoname', 'hzm_spill', 'phaz_relname', 'pbus_use', 'pbus_usename', 'special_v', 'psp_usename', 'pem_use', 'pem_usename', 'impact', 'pimpact1name', 'damage', 'pveh_sevname', 'towed', 'ptowedname', 'most_harm', 'pm_harmname', 'fire', 'pfirename', 'ptrlr1vin', 'ptrlr1vinname', 'ptrlr2vin', 'ptrlr2vinname', 'ptrlr3vin', 'ptrlr3vinname', 'pvpicmake', 'pvpicmakename', 'pvpicmodel', 'pvpicmodelname', 'pvpicbodyclass', 'pvpicbodyclassname', 'picfinalbody', 'picfinalbodyname', 'pgvwr_from', 'pgvwr_fromname', 'gvwr', 'pgvwr_toname', 'ptrlr1gvwr', 'ptrlr1gvwrname', 'ptrlr2gvwr', 'ptrlr2gvwrname', 'ptrlr3gvwr', 'ptrlr3gvwrname', 'psustrat', 'weight', 'veh_id']
+NoneType: None
+----------------
+2025-01-23_22:28:34
+Error level: --Message-- 
+Message: 2020 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:3261
+Clean Count: 3261
+NoneType: None
+----------------
+2025-01-23_22:28:59
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2020CSV/PERSON.CSV:
+Error:
+windows-1250
+NoneType: None
+----------------
+2025-01-23_22:29:03
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2020CSV/PERSON.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:29:03
+Error level: --Message-- 
+Message: C:\Users\cojac/Projects/crss/data/readydata/ Person
+Error:
+Row counts match as expected.
+Raw Count:131962
+Clean Count: 131962
+NoneType: None
+----------------
+2025-01-23_22:29:33
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/sourcedata/'}
+NoneType: None
+----------------
+2025-01-23_22:29:33
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/readydata/'}
+NoneType: None
+----------------
+2025-01-23_22:29:44
+Error level: --Message-- 
+Message: Zipfile contents for 2021
+Error:
+['crss2021csv/accident.csv', 'crss2021csv/cevent.csv', 'crss2021csv/crashrf.csv', 'crss2021csv/damage.csv', 'crss2021csv/distract.csv', 'crss2021csv/drimpair.csv', 'crss2021csv/driverrf.csv', 'crss2021csv/factor.csv', 'crss2021csv/maneuver.csv', 'crss2021csv/nmcrash.csv', 'crss2021csv/nmdistract.csv', 'crss2021csv/nmimpair.csv', 'crss2021csv/nmprior.csv', 'crss2021csv/parkwork.csv', 'crss2021csv/pbtype.csv', 'crss2021csv/person.csv', 'crss2021csv/personrf.csv', 'crss2021csv/pvehiclesf.csv', 'crss2021csv/safetyeq.csv', 'crss2021csv/vehicle.csv', 'crss2021csv/vehiclesf.csv', 'crss2021csv/vevent.csv', 'crss2021csv/violatn.csv', 'crss2021csv/vision.csv', 'crss2021csv/vpicdecode.csv', 'crss2021csv/vpictrailerdecode.csv', 'crss2021csv/vsoe.csv', 'crss2021csv/weather.csv']
+NoneType: None
+----------------
+2025-01-23_22:29:47
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2021CSV/ACCIDENT.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:29:49
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2021CSV/ACCIDENT.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:29:49
+Error level: --Message-- 
+Message: 2021 Accident
+Error:
+Row counts match as expected.
+Raw Count:54200
+Clean Count: 54200
+NoneType: None
+----------------
+2025-01-23_22:29:51
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2021CSV/VEHICLE.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:30:02
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2021CSV/VEHICLE.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:30:02
+Error level: --Message-- 
+Message: 2021 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:95785
+Clean Count: 95785
+NoneType: None
+----------------
+2025-01-23_22:30:02
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2021CSV/PARKWORK.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:30:02
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2021CSV/PARKWORK.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:30:02
+Error level: ***ALERT!*** 
+Message: Missing columns in 2021 PARKWORK: [['injured', 'speedrel', 'veh_speed', 'speedlimit', 'driver_pres', 'acc_type', 'precrash', 'crit_event', 'attempt', 'stability', 'direction']]
+Error:
+Columns in dataframe:
+['case_num', 'veh_no', 'psu', 'psu_var', 'psustrat', 'region', 'regionname', 'urbanicity', 'urbanicityname', 'stratum', 'stratumname', 'pj', 'weight', 'pve_forms', 'pmonth', 'pmonthname', 'phour', 'phourname', 'pminute', 'pminutename', 'pharm_ev', 'pharm_evname', 'pman_coll', 'pman_collname', 'occupants', 'pnumoccsname', 'moving', 'ptypename', 'hitrun', 'phit_runname', 'pvin', 'pvinname', 'v_year', 'pmodyearname', 'pvpicmake', 'pvpicmakename', 'pvpicmodel', 'pvpicmodelname', 'pvpicbodyclass', 'pvpicbodyclassname', 'v_make', 'pmakename', 'v_model', 'v_body', 'pbodytypname', 'picfinalbody', 'picfinalbodyname', 'pgvwr_from', 'pgvwr_fromname', 'gvwr', 'pgvwr_toname', 'trailer', 'ptrailername', 'ptrlr1vin', 'ptrlr1vinname', 'ptrlr2vin', 'ptrlr2vinname', 'ptrlr3vin', 'ptrlr3vinname', 'ptrlr1gvwr', 'ptrlr1gvwrname', 'ptrlr2gvwr', 'ptrlr2gvwrname', 'ptrlr3gvwr', 'ptrlr3gvwrname', 'pmcarr_id', 'pmcarr_idname', 'pmcarr_i1', 'pmcarr_i1name', 'pmcarr_i2', 'pmcarr_i2name', 'pv_config', 'pv_configname', 'cargo', 'pcargtypname', 'phaz_inv', 'phaz_invname', 'phazplac', 'phazplacname', 'phaz_id', 'phaz_idname', 'hazmat', 'phaz_cnoname', 'hzm_spill', 'phaz_relname', 'pbus_use', 'pbus_usename', 'special_v', 'psp_usename', 'pem_use', 'pem_usename', 'punderoverride', 'punderoverridename', 'impact', 'pimpact1name', 'damage', 'pveh_sevname', 'towed', 'ptowedname', 'most_harm', 'pm_harmname', 'fire', 'pfirename', 'make_model', 'pmak_modname', 'veh_id']
+NoneType: None
+----------------
+2025-01-23_22:30:02
+Error level: --Message-- 
+Message: 2021 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:2956
+Clean Count: 2956
+NoneType: None
+----------------
+2025-01-23_22:30:03
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2021CSV/PERSON.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:30:07
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2021CSV/PERSON.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:30:08
+Error level: --Message-- 
+Message: C:\Users\cojac/Projects/crss/data/readydata/ Person
+Error:
+Row counts match as expected.
+Raw Count:133734
+Clean Count: 133734
+NoneType: None
+----------------
+2025-01-23_22:31:12
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/sourcedata/'}
+NoneType: None
+----------------
+2025-01-23_22:31:12
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/readydata/'}
+NoneType: None
+----------------
+2025-01-23_22:31:23
+Error level: --Message-- 
+Message: Zipfile contents for 2022
+Error:
+['crss2022csv/accident.csv', 'crss2022csv/cevent.csv', 'crss2022csv/crashrf.csv', 'crss2022csv/damage.csv', 'crss2022csv/distract.csv', 'crss2022csv/drimpair.csv', 'crss2022csv/driverrf.csv', 'crss2022csv/factor.csv', 'crss2022csv/maneuver.csv', 'crss2022csv/nmcrash.csv', 'crss2022csv/nmdistract.csv', 'crss2022csv/nmimpair.csv', 'crss2022csv/nmprior.csv', 'crss2022csv/parkwork.csv', 'crss2022csv/pbtype.csv', 'crss2022csv/person.csv', 'crss2022csv/personrf.csv', 'crss2022csv/pvehiclesf.csv', 'crss2022csv/safetyeq.csv', 'crss2022csv/vehicle.csv', 'crss2022csv/vehiclesf.csv', 'crss2022csv/vevent.csv', 'crss2022csv/violatn.csv', 'crss2022csv/vision.csv', 'crss2022csv/vpicdecode.csv', 'crss2022csv/vpictrailerdecode.csv', 'crss2022csv/vsoe.csv', 'crss2022csv/weather.csv']
+NoneType: None
+----------------
+2025-01-23_22:31:26
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2022CSV/ACCIDENT.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:31:28
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2022CSV/ACCIDENT.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:31:28
+Error level: --Message-- 
+Message: 2022 Accident
+Error:
+Row counts match as expected.
+Raw Count:53955
+Clean Count: 53955
+NoneType: None
+----------------
+2025-01-23_22:31:29
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2022CSV/VEHICLE.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:31:34
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2022CSV/VEHICLE.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:31:34
+Error level: --Message-- 
+Message: 2022 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:94756
+Clean Count: 94756
+NoneType: None
+----------------
+2025-01-23_22:31:34
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2022CSV/PARKWORK.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:31:34
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2022CSV/PARKWORK.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:31:34
+Error level: ***ALERT!*** 
+Message: Missing columns in 2022 PARKWORK: [['injured', 'speedrel', 'veh_speed', 'speedlimit', 'driver_pres', 'acc_type', 'precrash', 'crit_event', 'attempt', 'stability', 'direction']]
+Error:
+Columns in dataframe:
+['case_num', 'veh_no', 'psu', 'psu_var', 'psustrat', 'region', 'regionname', 'urbanicity', 'urbanicityname', 'stratum', 'stratumname', 'pj', 'weight', 'pve_forms', 'pmonth', 'pmonthname', 'phour', 'phourname', 'pminute', 'pminutename', 'pharm_ev', 'pharm_evname', 'pman_coll', 'pman_collname', 'occupants', 'pnumoccsname', 'moving', 'ptypename', 'hitrun', 'phit_runname', 'pvin', 'pvinname', 'v_year', 'pmodyearname', 'pvpicmake', 'pvpicmakename', 'pvpicmodel', 'pvpicmodelname', 'pvpicbodyclass', 'pvpicbodyclassname', 'v_make', 'pmakename', 'v_model', 'v_body', 'pbodytypname', 'picfinalbody', 'picfinalbodyname', 'pgvwr_from', 'pgvwr_fromname', 'gvwr', 'pgvwr_toname', 'trailer', 'ptrailername', 'ptrlr1vin', 'ptrlr1vinname', 'ptrlr2vin', 'ptrlr2vinname', 'ptrlr3vin', 'ptrlr3vinname', 'ptrlr1gvwr', 'ptrlr1gvwrname', 'ptrlr2gvwr', 'ptrlr2gvwrname', 'ptrlr3gvwr', 'ptrlr3gvwrname', 'pmcarr_id', 'pmcarr_idname', 'pmcarr_i1', 'pmcarr_i1name', 'pmcarr_i2', 'pmcarr_i2name', 'pv_config', 'pv_configname', 'cargo', 'pcargtypname', 'phaz_inv', 'phaz_invname', 'phazplac', 'phazplacname', 'phaz_id', 'phaz_idname', 'hazmat', 'phaz_cnoname', 'hzm_spill', 'phaz_relname', 'pbus_use', 'pbus_usename', 'special_v', 'psp_usename', 'pem_use', 'pem_usename', 'punderoverride', 'punderoverridename', 'impact', 'pimpact1name', 'damage', 'pveh_sevname', 'towed', 'ptowedname', 'most_harm', 'pm_harmname', 'fire', 'pfirename', 'make_model', 'pmak_modname', 'veh_id']
+NoneType: None
+----------------
+2025-01-23_22:31:35
+Error level: --Message-- 
+Message: 2022 Vehicle
+Error:
+Row counts match as expected.
+Raw Count:3012
+Clean Count: 3012
+NoneType: None
+----------------
+2025-01-23_22:31:36
+Error level: --Message-- 
+Message: Detected encoding for C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2022CSV/PERSON.CSV:
+Error:
+ascii
+NoneType: None
+----------------
+2025-01-23_22:31:41
+Error level: --Message-- 
+Message: Loaded file: C:\Users\cojac/Projects/crss/data/sourcedata/CRSS2022CSV/PERSON.CSV
+Error:
+
+NoneType: None
+----------------
+2025-01-23_22:31:41
+Error level: --Message-- 
+Message: C:\Users\cojac/Projects/crss/data/readydata/ Person
+Error:
+Row counts match as expected.
+Raw Count:132175
+Clean Count: 132175
+NoneType: None
+----------------
+2025-01-23_22:32:17
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/sourcedata/'}
+NoneType: None
+----------------
+2025-01-23_22:32:17
+Error level: --Message-- 
+Message: Contents of directory cleared
+Error:
+{'C:\\Users\\cojac/Projects/crss/data/readydata/'}
+NoneType: None

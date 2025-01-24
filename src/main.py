@@ -9,9 +9,9 @@ crss_files = ["ACCIDENT.CSV",
               "VEHICLE.CSV", 
               "PARKWORK.CSV", 
               "PERSON.CSV"]
-available_years = [#2016, 
-                   #2017, 
-                   #2018, 
+available_years = [2016, 
+                   2017, 
+                   2018, 
                    2019, 
                    2020, 
                    2021, 
@@ -192,7 +192,7 @@ def crss_etl (record_years, files, src, rdy, arch):
                             else:
                                 el.logging(3, f"All retries failed for batch in {crss[key]['db_table']}", mysql.connector.Error)
 
-                        print(".........Load Complete!")
+                    print(".........Load Complete!")
             except:
                 el.logging(3, f"Loading Phase for year {r}, table {crss[key]['db_table']} failed to load", Exception)
                 print("FAILED!\nCheck ERROR_LOG.txt")
