@@ -228,3 +228,68 @@ VALUES
 (98, "Not Reported"),
 (99, "Reported as Unknown Location")
 ;
+
+ALTER TABLE `crss`.`fact_person` 
+ADD INDEX `per_alcohol_idx` (`alcohol` ASC) VISIBLE,
+ADD INDEX `per_airbag_idx` (`airbag` ASC) VISIBLE,
+ADD INDEX `per_drugs_idx` (`drugs` ASC) VISIBLE,
+ADD INDEX `per_eject_idx` (`eject` ASC) VISIBLE,
+ADD INDEX `per_hospital_idx` (`hospital` ASC) VISIBLE,
+ADD INDEX `per_location_idx` (`location` ASC) VISIBLE,
+ADD INDEX `per_type_idx` (`per_type` ASC) VISIBLE,
+ADD INDEX `per_safemisuse_idx` (`safety_misuse` ASC) VISIBLE,
+ADD INDEX `per_seat_idx` (`seat` ASC) VISIBLE,
+ADD INDEX `per_sex_idx` (`sex` ASC) VISIBLE;
+;
+ALTER TABLE `crss`.`fact_person` 
+ADD CONSTRAINT `per_airbag`
+  FOREIGN KEY (`air_bag`)
+  REFERENCES `crss`.`dimper_airbag` (`airbag_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `per_alcohol`
+  FOREIGN KEY (`alcohol`)
+  REFERENCES `crss`.`dimper_alcohol` (`alc_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `per_drugs`
+  FOREIGN KEY (`drugs`)
+  REFERENCES `crss`.`dimper_drugs` (`drug_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `per_eject`
+  FOREIGN KEY (`eject`)
+  REFERENCES `crss`.`dimper_eject` (`eject_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `per_hospital`
+  FOREIGN KEY (`hospital`)
+  REFERENCES `crss`.`dimper_hospital` (`hosp_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `per_location`
+  FOREIGN KEY (`location`)
+  REFERENCES `crss`.`dimper_location` (`loc_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `per_type`
+  FOREIGN KEY (`per_type`)
+  REFERENCES `crss`.`dimper_pertype` (`pt_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `per_safemisuse`
+  FOREIGN KEY (`safety_misuse`)
+  REFERENCES `crss`.`dimper_safety_misuse` (`sm_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `per_seat`
+  FOREIGN KEY (`seat`)
+  REFERENCES `crss`.`dimper_seat` (`seat_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `per_sex`
+  FOREIGN KEY (`sex`)
+  REFERENCES `crss`.`dimper_sex` (`sex_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+  
